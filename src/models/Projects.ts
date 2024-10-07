@@ -65,4 +65,5 @@ export const projects: Project[] = [
   matrnaud,
   marihacks,
   asiantype,
+  budgetbuddy,
 ];

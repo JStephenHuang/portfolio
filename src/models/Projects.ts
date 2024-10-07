@@ -41,12 +41,21 @@ const marihacks: Project = {
   src: "/marihacks.mov",
 };
 
+const budgetbuddy: Project = {
+  name: "Budget Buddy",
+  role: "Personal project",
+  date: " Mar 16, 2024",
+  link: "https://budget-buddy-v1-tawny.vercel.app/",
+  linkName: "https://budget-buddy-v1-tawny.vercel.app",
+  src: "/budgetbuddy.mov",
+};
+
 const asiantype: Project = {
   name: "asiantype",
   role: "Personal project",
-  date: "Aug. 2023 - Apr. 2024",
+  date: " Mar 25, 2022 - Apr 2, 2022",
   link: "https://typingtest-wine-six.vercel.app/",
-  linkName: "https://typingtest-wine-six.vercel.app/",
+  linkName: "https://typingtest-wine-six.vercel.app",
   src: "/asiantype.mov",
 };
 

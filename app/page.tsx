@@ -27,7 +27,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 export default function Home() {
   return (
-    <div className="px-[3rem] flex flex-col items-center font-[family-name:var(--font-geist-sans)]">
+    <div className="px-[5rem] flex flex-col items-center font-[family-name:var(--font-geist-sans)]">
       <h1 className="text-[2rem] font-bold py-[5rem]">
         Stephen&apos;s pile of stuff
       </h1>
@@ -36,7 +36,8 @@ export default function Home() {
           <ProjectCard key={key} project={project} />
         ))}
       </div>
-      <div className="py-[5rem] font-bold flex items-center gap-[1rem]">
+      <p>More to come!</p>
+      <div className="py-[5rem] flex items-center gap-[1rem]">
         <p>514-836-8531</p>|
         <a
           className="hover:underline"
@@ -55,7 +56,6 @@ export default function Home() {
         <a className="hover:underline" href="https://github.com/JStephenHuang">
           Github
         </a>
-        |
       </div>
     </div>
   );

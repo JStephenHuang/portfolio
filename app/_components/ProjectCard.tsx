@@ -2,7 +2,6 @@
 
 import { Project } from "@/src/models/Projects";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
 import { useRef } from "react";
 
 const ProjectCard = ({ project }: { project: Project }) => {

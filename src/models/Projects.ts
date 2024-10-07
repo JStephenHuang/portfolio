@@ -1,11 +1,3 @@
-class Route {
-  slug: string;
-
-  constructor({ slug }: { slug: string }) {
-    this.slug = slug;
-  }
-}
-
 export type Project = {
   name: string;
   subname: string;

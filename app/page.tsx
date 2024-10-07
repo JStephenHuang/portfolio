@@ -1,4 +1,4 @@
-import { Project, projects } from "@/src/models/Projects";
+import { projects } from "@/src/models/Projects";
 
 import ProjectCard from "@/app/_components/ProjectCard";
 

@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div className="px-[3rem] flex flex-col items-center font-[family-name:var(--font-geist-sans)]">
       <h1 className="text-[2rem] font-bold py-[5rem]">
-        Stephen's pile of stuff
+        Stephen&apos;s pile of stuff
       </h1>
       <div className="grid grid-cols-3 gap-[1rem]">
         {projects.map((project, key) => (

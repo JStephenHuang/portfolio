@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Project, projects } from "@/src/models/Projects";
 
 const ProjectCard = ({ project }: { project: Project }) => {

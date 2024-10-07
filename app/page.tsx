@@ -1,29 +1,6 @@
 import { Project, projects } from "@/src/models/Projects";
 
-const ProjectCard = ({ project }: { project: Project }) => {
-  return (
-    <div className="flex flex-col w-full border border-black overflow-hidden">
-      {project.src.split(".")[1] === "mov" && (
-        <video
-          className="w-full aspect-video object-fit"
-          loop
-          autoPlay
-          muted
-          src={project.src}
-        />
-      )}
-
-      <div className="p-[1rem] flex flex-col">
-        <p className="font-bold text-[1.25rem]">{project.name}</p>
-        <p className="font-bold text-gray-600">{project.role}</p>
-        <p className="text-[0.75rem]">{project.date}</p>
-        <a className="w-fit underline hover:text-red-500" href={project.link}>
-          {project.linkName}
-        </a>
-      </div>
-    </div>
-  );
-};
+import ProjectCard from "@/app/_components/ProjectCard";
 
 export default function Home() {
   return (

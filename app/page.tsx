@@ -36,7 +36,7 @@ export default function Home() {
           <ProjectCard key={key} project={project} />
         ))}
       </div>
-      <p>More to come!</p>
+      <p className="mt-[5rem]">More to come!</p>
       <div className="py-[5rem] flex items-center gap-[1rem]">
         <p>514-836-8531</p>|
         <a

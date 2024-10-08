@@ -56,7 +56,7 @@ const marihacks: Project = {
 
 const budgetbuddy: Project = {
   name: "Budget Buddy",
-  subname: "Personal project",
+  subname: "Hackathon project",
   date: " Mar 16, 2024",
   link: "https://budget-buddy-v1-tawny.vercel.app/",
   mainVideoPath: "/budgetbuddy.mov",

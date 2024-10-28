@@ -33,7 +33,7 @@ export default function Home() {
         </a>
       </div>
       <nav className="w-full flex items-start p-4">
-        <Link href={"/sheartak-ltd"}>sheartak ltd</Link>
+        <Link href={"/sheartak-tools-ltd"}>sheartak ltd</Link>
       </nav>
     </div>
   );

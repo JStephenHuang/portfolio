@@ -1,6 +1,6 @@
 import { projects } from "@/src/models/Projects";
 
-import ProjectCard from "@/app/_components/ProjectCard";
+import ProjectCard from "@/components/ProjectCard";
 import Link from "next/link";
 
 export default function Home() {
@@ -14,17 +14,11 @@ export default function Home() {
       <p className="mt-[5rem]">...</p>
       <div className="py-[5rem] flex items-center gap-[1rem]">
         <p>514-836-8531</p>|
-        <a
-          className="hover:underline"
-          href="mailto:jstephen.huang@uwaterloo.ca"
-        >
+        <a className="hover:underline" href="mailto:jstephen.huang@uwaterloo.ca">
           jstephen.huang@uwaterloo.ca
         </a>
         |
-        <a
-          className="hover:underline"
-          href="https://www.linkedin.com/in/jstephenhuang/"
-        >
+        <a className="hover:underline" href="https://www.linkedin.com/in/jstephenhuang/">
           Linkedin
         </a>
         |

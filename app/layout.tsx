@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Stephen's Pile of Stuff",
-  description: "Discover things about me.",
+  title: "Stephen | Portfolio",
+  description: "This is kinda",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return <html lang="en">{children}</html>;
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-inter",
+});
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className={`${inter.variable} font-sans antialiased`}>{children}</body>
+    </html>
+  );
 }

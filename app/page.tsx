@@ -12,7 +12,7 @@ export default function Home() {
     <div className="flex flex-col items-center gap-8 py-[5rem]">
       <div className="w-[90%] lg:w-1/2 flex flex-col gap-10">
         <section className="section">
-          <h2 className="text-4xl tracking-tight">Hello, I&apos;m stephen huang</h2>
+          <h2 className="text-4xl tracking-tight">Stephen Huang&apos;s Portfolio</h2>
           <p>
             I&apos;m a <strong>Computer Engineering</strong> student at the{" "}
             <strong>University of Waterloo</strong> who enjoys learning complex concepts and

@@ -4,8 +4,9 @@ import { Project } from "@/src/models/project";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 
-const ProjectCard = ({ name, position, url, video, skills, description, date }: Project) => {
+const ProjectCard = ({ name, position, url, media, skills, description, date }: Project) => {
   const [hovered, setHovered] = useState(false);
   const [cardHeight, setCardHeight] = useState<number>(0);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -59,22 +60,44 @@ const ProjectCard = ({ name, position, url, video, skills, description, date }: 
       {/* Hover Preview with Video and Description */}
       {hovered && (
         <div
-          className={`z-10 absolute w-full aspect-video rounded-lg bg-white overflow-hidden animate-fade-in border border-gray-200 overflow-y-auto`}
-          style={{
-            top: -cardHeight - 5, // dynamically position above card
-          }}
+          className="z-10 absolute w-full aspect-video rounded-xl bg-red-50 overflow-hidden animate-fade-in overflow-y-auto"
+          style={{ top: -cardHeight }}
         >
-          <video src={video} className="w-full h-auto" autoPlay muted loop playsInline />
-          {description && (
-            <div className="p-4 bg-white text-xs text-gray-700 max-h-[6rem]">
-              {/* {description.split("\n").map((line, i) => (
-                <p key={i} className="mb-1">
-                  {line}
-                </p>
-              ))} */}
-              {description}
+          {media && (
+            <div className="w-full aspect-video flex flex-col">
+              {media.map((src, i) => {
+                // YouTube URL?
+                const ytMatch = src.match(
+                  /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/
+                );
+                if (ytMatch) {
+                  const id = ytMatch[1];
+                  return (
+                    <iframe
+                      key={i}
+                      className="w-full h-full"
+                      src={`https://www.youtube.com/embed/${id}`}
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                    />
+                  );
+                }
+                // Otherwise assume it's an image
+                return (
+                  <Image
+                    key={i}
+                    className="w-full h-auto object-cover"
+                    src={src}
+                    width={500}
+                    height={500}
+                    alt={`Media ${i + 1}`}
+                  />
+                );
+              })}
             </div>
           )}
+
+          {description && <div className="p-4 text-xs text-gray-700">{description}</div>}
         </div>
       )}
     </div>

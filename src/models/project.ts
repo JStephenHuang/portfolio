@@ -39,7 +39,7 @@ const rbb: Project = {
   date: "Feb. 2025 - Present",
   url: "https://www.rbbmanufacturing.com",
   media: ["/media/rbb2.png"],
-  skills: ["Next.js", "SASS", "Prisma", "Notion API"],
+  skills: ["Next.js", "SASS", "Prisma", "Notion API", "Typescript"],
   description:
     "Built a full-stack form system with Next.js, SASS, and Prisma for batch requests across 70+ clients, speeding fulfillment by 50%. Resolved 10+ operational bugs and integrated Notion API to enhance ticket resolution productivity by 40%.",
 };
@@ -50,7 +50,7 @@ const sheartak: Project = {
   position: "Mechanical Engineer Associate",
   date: "Jan. 2025 - Apr. 2025",
   url: "https://www.sheartak.com",
-  skills: ["SolidWorks", "Technical Writing", "Illustrator"],
+  skills: ["SolidWorks", "Technical Writing"],
   description:
     "Designed 50+ 3D models and 2D drawings for production using SolidWorks. Authored manuals for 20+ products, empowering customers to self-install and cutting support requests by 90%.",
 };
@@ -65,7 +65,7 @@ const ros2TurtleSim: Project = {
     "https://www.youtube.com/watch?v=X753Z43CDF0",
     "https://www.youtube.com/watch?v=4LbO1DBZxbk",
   ], // optional placeholder
-  skills: ["C++", "ROS2"],
+  skills: ["C++", "ROS2", "Linux"],
   description:
     "Completed a hands-on workshop building a follower robot using the ROS2 TurtleSim framework.\n" +
     "Implemented ROS2 publishers/subscribers in C++ to control a turtle that tracked and followed another turtle.",
@@ -148,10 +148,10 @@ export const projects: Project[] = [
   rbb,
   ros2TurtleSim,
   legoPidCar,
+  budgetbuddy,
+  marihacks,
+  asiantype,
   sheartak,
   honeyice,
   capshun,
-  marihacks,
-  budgetbuddy,
-  asiantype,
 ];

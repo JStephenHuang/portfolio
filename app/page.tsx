@@ -35,14 +35,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="section">
-          <h2 className="text-4xl tracking-tight">Ongoing projects</h2>
-          <div className="flex flex-col gap-2 ml-4">
-            <li>youtube automation pipeline using LangChain</li>
-            <li>collaborative markdown file editior</li>
-            <li>building a rudimentary computer cluster</li>
-          </div>
-        </section>
         <section className="section items-center">
           <hr className="w-full" />
           <div className="flex items-center gap-[1rem]">

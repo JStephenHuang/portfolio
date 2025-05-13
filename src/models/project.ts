@@ -21,11 +21,11 @@ const wato: Project = {
   date: "Sept. 2024 - Present",
   url: "https://www.watonomous.ca/",
   media: [
-    "https://www.youtube.com/watch?v=Y1IZLzXHj7Q",
     "/media/wm2.png",
     "/media/wm1.png",
-    "https://www.youtube.com/watch?v=bFomUyp9co4",
     "/media/wm3.png",
+    "https://www.youtube.com/watch?v=Y1IZLzXHj7Q",
+    "https://www.youtube.com/watch?v=bFomUyp9co4",
   ],
   skills: ["C++", "ROS2", "Foxglove", "CARLA", "Docker", "SLURM"],
   description:
@@ -51,6 +51,7 @@ const sheartak: Project = {
   date: "Jan. 2025 - Apr. 2025",
   url: "https://www.sheartak.com",
   skills: ["SolidWorks", "Technical Writing"],
+  media: ["/media/sheartak.png"],
   description:
     "Designed 50+ 3D models and 2D drawings for production using SolidWorks. Authored manuals for 20+ products, empowering customers to self-install and cutting support requests by 90%.",
 };
@@ -95,6 +96,7 @@ const honeyice: Project = {
   date: "Jan. 2024 - Jul. 2024",
   url: "https://honeyice.world",
   skills: ["Next.js", "Firebase", "JWT", "SendGrid"],
+  media: ["/media/h1.png", "/media/h2.png"],
   description:
     "Developed marketing site and admin dashboard for a design brand using Next.js and Firebase. Secured content editing with JWT auth. Integrated SendGrid for email workflows, increasing sales and outreach by 40%.",
 };
@@ -106,6 +108,7 @@ const capshun: Project = {
   date: "Jun. 2024 - Aug. 2024",
   url: "https://capshun.ca",
   skills: ["Next.js", "Firebase", "Stripe"],
+  media: ["/media/cap1.png", "/media/cap2.png"],
   description:
     "Built a web app offering 99% accurate AI-generated transcriptions. Integrated Firebase for auth and data storage, and Stripe for secure payments. Designed accessible UX for upload, edit, and analytics.",
 };
@@ -116,6 +119,7 @@ const marihacks: Project = {
   position: "Website Lead Organizer",
   date: "Aug. 2023 - Apr. 2024",
   url: "https://marihacks.com",
+  media: ["/media/mh1.png"],
   skills: ["React", "Framer Motion", "TailwindCSS"],
   description:
     "Revamped MariHacks site with animations and interactive UI, doubling event participation. Led and taught React workshops to increase outreach and branding appeal.",
@@ -124,8 +128,9 @@ const marihacks: Project = {
 const budgetbuddy: Project = {
   name: "Budget Buddy",
   slug: "budgetbuddy",
-  position: "Hackathon Winner",
+  position: "1st Place Hackathon Winner",
   date: "Mar. 16, 2024",
+  media: ["/media/bb1.png", "/media/bb2.png"],
   url: "https://budget-buddy-v1-tawny.vercel.app/",
   skills: ["Next.js", "Tesseract OCR", "REST APIs"],
   description:
@@ -139,6 +144,7 @@ const asiantype: Project = {
   date: "Mar. 25, 2022 - Apr. 2, 2022",
   url: "https://typingtest-wine-six.vercel.app",
   skills: ["React", "TailwindCSS", "Typescript"],
+  media: ["/media/at1.png"],
   description:
     "Created a typing speed test app tailored for Asian character inputs, featuring minimalistic design and real-time feedback.",
 };

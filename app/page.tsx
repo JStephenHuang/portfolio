@@ -10,18 +10,28 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center gap-8 py-[5rem]">
-      <div className="w-[90%] lg:w-1/2 flex flex-col gap-10">
-        <section className="section">
+      <div className="w-[90%] lg:w-2/3 flex flex-col items-center gap-10">
+        <section className="section w-[55%] items-center">
           <h2 className="text-4xl tracking-tight">Stephen Huang&apos;s Portfolio</h2>
-          <p>
+          <hr className="w-[10%] border-red-500 " />
+
+          <p className="text-center">
             I&apos;m a <strong>Computer Engineering</strong> student at the{" "}
             <strong>University of Waterloo</strong> who enjoys learning complex concepts and
             applying that knowledge to create meaningful impact for others and the world.
           </p>
         </section>
-        <section className="section">
+
+        <section className="section w-[55%] items-center">
           <h2 className="text-4xl tracking-tight">Projects</h2>
-          Hover to preview a short video and brief description.
+          <hr className="w-[10%] border-red-500 " />
+
+          <p className="text-center">
+            These are some of the projects which thaught me valuable lessons and driving my growth
+            and ambition as a developer.
+          </p>
+        </section>
+        <section className="section ">
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="w-full flex flex-col gap-8">
               {leftProjects.map((project) => (

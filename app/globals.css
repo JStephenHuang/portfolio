@@ -20,7 +20,7 @@ body {
 
 @layer components {
   .section {
-    @apply flex flex-col gap-4;
+    @apply w-full flex flex-col gap-4;
   }
 }
 

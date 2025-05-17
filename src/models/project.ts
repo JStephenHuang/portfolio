@@ -116,13 +116,27 @@ const capshun: Project = {
 const marihacks: Project = {
   name: "MariHacks",
   slug: "marihacks",
-  position: "Website Lead Organizer",
+  position: "Hackathon Lead Organizer",
   date: "Aug. 2023 - Apr. 2024",
   url: "https://marihacks.com",
   media: ["/media/mh1.png"],
   skills: ["React", "Framer Motion", "TailwindCSS"],
   description:
     "Revamped MariHacks site with animations and interactive UI, doubling event participation. Led and taught React workshops to increase outreach and branding appeal.",
+};
+
+const matrnaud: Project = {
+  name: "Matrnaud",
+  slug: "matrnaud",
+  position: "Freelance Web Developer",
+  date: "Mar. 2023 - May 2023",
+  url: "https://www.matrnaud.com",
+  media: ["/media/mat1.png", "/media/mat2.png"],
+  skills: ["React", "Firebase", "SendGrid", "Express.js"],
+  description:
+    "Developed a polished portfolio for a photographer using React and Firebase, showcasing their work and services. " +
+    "Integrated an intuitive inquiry form with SendGrid for handling photography bookings, increasing bookings by 50%. " +
+    "Built an admin page with Express.js, enabling the site owner to safely manage and update content independently.",
 };
 
 const budgetbuddy: Project = {
@@ -153,8 +167,9 @@ export const projects: Project[] = [
   wato,
   rbb,
   ros2TurtleSim,
-  legoPidCar,
+  matrnaud,
   budgetbuddy,
+  legoPidCar,
   marihacks,
   asiantype,
   sheartak,

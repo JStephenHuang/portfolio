@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+});
 
 export const metadata: Metadata = {
   title: "Stephen | Portfolio",
-  description: "This is kinda",
+  description: "Full-stack developer and designer",
 };
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-inter",
-});
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>{children}</body>
+    <html lang="en" className={manrope.variable}>
+      <body className={`antialiased`}>{children}</body>
     </html>
   );
 }

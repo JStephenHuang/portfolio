@@ -1,0 +1,16 @@
+node_modules
+.next
+dist
+out
+public/videos
+public/**/*.mov
+coverage
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+*.min.*
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4

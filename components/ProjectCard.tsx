@@ -2,11 +2,10 @@
 import { Project } from "@/src/models/project";
 import Link from "next/link";
 import { useState } from "react";
-import { ExternalLinkIcon } from "@radix-ui/react-icons";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ExternalLinkIcon, ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 
-const ProjectCard = ({ name, position, url, media, skills, description, date }: Project) => {
+const ProjectCard = ({ name, position, url, media, date }: Project) => {
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
   const nextMedia = () => {
@@ -31,7 +30,7 @@ const ProjectCard = ({ name, position, url, media, skills, description, date }: 
               {media.map((src, i) => {
                 // YouTube URL?
                 const ytMatch = src.match(
-                  /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/
+                  /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/,
                 );
 
                 if (ytMatch) {
@@ -115,23 +114,6 @@ const ProjectCard = ({ name, position, url, media, skills, description, date }: 
             Visit <ExternalLinkIcon />
           </Link>
         )}
-
-        {/* Skills */}
-        {skills && skills.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <span
-                key={skill}
-                className="border border-gray-300 text-sm px-3 py-1 rounded-md text-gray-700"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Description - now visible by default */}
-        {description && <div className="text-sm text-gray-700 mt-2">{description}</div>}
       </div>
     </div>
   );

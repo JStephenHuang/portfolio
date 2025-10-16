@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
   body {
-    @apply font-manrope;
+    @apply font-medium
   }
 }
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,33 +16,13 @@
 body {
   color: var(--foreground);
   background: var(--background);
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  font-family: var(--font-roboto-mono);
+  font-size: 14px
 }
 
 @layer components {
-  .section {
-    @apply w-full flex flex-col gap-4;
+  .text-secondary {
+    @apply text-gray-600 hover:text-red-800
   }
 }
 
-@layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.2s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}

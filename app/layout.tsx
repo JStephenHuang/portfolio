@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Manrope, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
 });
+
+const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  variable: "--font-roboto-mono",
+});
+
+const fontVariables = `${manrope.variable} ${robotoMono.variable}`;
 
 export const metadata: Metadata = {
   title: "Stephen | Portfolio",
@@ -14,8 +21,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={manrope.variable}>
-      <body className={`antialiased`}>{children}</body>
+    <html lang="en" className={fontVariables}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

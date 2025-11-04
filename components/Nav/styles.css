@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer components {
+    .nav-container {
+        @apply text-gray-500
+    }
+    .nav {
+        @apply  fixed left-8 top-8 right-8 z-50 grid grid-cols-3
+
+    }
+  .navlink {
+    @apply w-fit hover:text-amber-600
+  }
+}

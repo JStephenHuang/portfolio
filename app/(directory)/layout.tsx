@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Roboto_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
+import { Nav } from "@/components/Nav/index";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -16,13 +17,16 @@ const fontVariables = `${manrope.variable} ${robotoMono.variable}`;
 
 export const metadata: Metadata = {
   title: "Stephen | Portfolio",
-  description: "Full-stack developer and designer",
+  description: "",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fontVariables}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <Nav />
+        {children}
+      </body>
     </html>
   );
 }

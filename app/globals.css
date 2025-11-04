@@ -17,12 +17,16 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-roboto-mono);
-  font-size: 14px
+  font-size: .8125rem;
+}
+
+@layer base {
+  body {
+    @apply font-normal tracking-tight;
+  }
 }
 
 @layer components {
-  .text-secondary {
-    @apply text-gray-600 hover:text-red-800
-  }
+
 }
 

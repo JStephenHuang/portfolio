@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 
 interface DraggableItemProps {
@@ -15,11 +15,27 @@ let highestZIndex = 1;
 
 const DraggableItem = ({ children, onClick, initialX = 0, initialY = 0 }: DraggableItemProps) => {
   const [isDragging, setIsDragging] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
   const [zIndex, setZIndex] = useState(1);
   const wasDraggedRef = useRef(false);
+  const nodeRef = useRef<HTMLDivElement>(null);
+
+  // Handle clicks outside to deselect
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (nodeRef.current && !nodeRef.current.contains(e.target as Node)) {
+        setIsSelected(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleStart = () => {
-    setIsDragging(false);
+    setIsDragging(true);
     wasDraggedRef.current = false;
     // Bring to front when starting to drag
     highestZIndex += 1;
@@ -38,6 +54,8 @@ const DraggableItem = ({ children, onClick, initialX = 0, initialY = 0 }: Dragga
     if (!wasDraggedRef.current && onClick) {
       onClick();
     }
+
+    setIsSelected(true);
   };
 
   return (
@@ -49,7 +67,8 @@ const DraggableItem = ({ children, onClick, initialX = 0, initialY = 0 }: Dragga
       bounds="parent" // Constrains dragging within parent boundaries
     >
       <div
-        className={`absolute p-1 cursor-pointer ${isDragging ? "outline-dotted outline-2" : ""}`}
+        ref={nodeRef}
+        className={`absolute p-1 cursor-pointer ${isDragging || isSelected ? "outline-dotted outline-2" : ""}`}
         style={{ zIndex }}
       >
         {children}

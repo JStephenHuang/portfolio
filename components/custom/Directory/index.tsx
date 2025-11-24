@@ -24,7 +24,7 @@ const Directory = ({
   return (
     <Canvas.Item initialX={initialX} initialY={initialY} onClick={() => router.push(href)}>
       <div className="flex flex-col items-center gap-1">
-        <div className="w-20 h-20">
+        <div className="w-16 h-16">
           {/* Folder icon */}
           <Image
             src={image}
@@ -35,7 +35,7 @@ const Directory = ({
             draggable={false}
           />
         </div>
-        <span className="max-w-20 break-words text-center">{title}</span>
+        <span className="max-w-16 break-words text-center">{title}</span>
       </div>
     </Canvas.Item>
   );

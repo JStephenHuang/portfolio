@@ -19,7 +19,7 @@ export const Nav = () => {
           j. stephen huang
         </Link>
         <Link className="navlink place-self-end" href="/">
-          notes
+          about
         </Link>
       </div>
       {/* Footer */}

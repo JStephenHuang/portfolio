@@ -2,10 +2,10 @@
 
 import Canvas from "@/components/Canvas";
 import Directory from "@/components/custom/Directory";
-import { projectDirectories } from "@/lib/data/directories/projects";
+import { experienceDirectories } from "@/lib/data/directories/experience";
 
 export default function ExperiencePage() {
-  const items = projectDirectories.map((dir, index) => (
+  const items = experienceDirectories.map((dir, index) => (
     <Directory
       key={index}
       title={dir.name}

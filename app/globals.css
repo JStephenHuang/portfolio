@@ -16,7 +16,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-roboto-mono);
+  font-family: var(--font-space-grotesk);
   font-size: .8125rem;
 }
 

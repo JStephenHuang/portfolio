@@ -102,10 +102,55 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@napi-rs/canvas-android-arm64@0.1.70":
+  version "0.1.70"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-android-arm64/-/canvas-android-arm64-0.1.70.tgz"
+  integrity sha512-I/YOuQ0wbkVYxVaYtCgN42WKTYxNqFA0gTcTrHIGG1jfpDSyZWII/uHcjOo4nzd19io6Y4+/BqP8E5hJgf9OmQ==
+
 "@napi-rs/canvas-darwin-arm64@0.1.70":
   version "0.1.70"
   resolved "https://registry.npmjs.org/@napi-rs/canvas-darwin-arm64/-/canvas-darwin-arm64-0.1.70.tgz"
   integrity sha512-4pPGyXetHIHkw2TOJHujt3mkCP8LdDu8+CT15ld9Id39c752RcI0amDHSuMLMQfAjvusA9B5kKxazwjMGjEJpQ==
+
+"@napi-rs/canvas-darwin-x64@0.1.70":
+  version "0.1.70"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-darwin-x64/-/canvas-darwin-x64-0.1.70.tgz"
+  integrity sha512-+2N6Os9LbkmDMHL+raknrUcLQhsXzc5CSXRbXws9C3pv/mjHRVszQ9dhFUUe9FjfPhCJznO6USVdwOtu7pOrzQ==
+
+"@napi-rs/canvas-linux-arm-gnueabihf@0.1.70":
+  version "0.1.70"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-linux-arm-gnueabihf/-/canvas-linux-arm-gnueabihf-0.1.70.tgz"
+  integrity sha512-QjscX9OaKq/990sVhSMj581xuqLgiaPVMjjYvWaCmAJRkNQ004QfoSMEm3FoTqM4DRoquP8jvuEXScVJsc1rqQ==
+
+"@napi-rs/canvas-linux-arm64-gnu@0.1.70":
+  version "0.1.70"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-linux-arm64-gnu/-/canvas-linux-arm64-gnu-0.1.70.tgz"
+  integrity sha512-LNakMOwwqwiHIwMpnMAbFRczQMQ7TkkMyATqFCOtUJNlE6LPP/QiUj/mlFrNbUn/hctqShJ60gWEb52ZTALbVw==
+
+"@napi-rs/canvas-linux-arm64-musl@0.1.70":
+  version "0.1.70"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-linux-arm64-musl/-/canvas-linux-arm64-musl-0.1.70.tgz"
+  integrity sha512-wBTOllEYNfJCHOdZj9v8gLzZ4oY3oyPX8MSRvaxPm/s7RfEXxCyZ8OhJ5xAyicsDdbE5YBZqdmaaeP5+xKxvtg==
+
+"@napi-rs/canvas-linux-riscv64-gnu@0.1.70":
+  version "0.1.70"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-linux-riscv64-gnu/-/canvas-linux-riscv64-gnu-0.1.70.tgz"
+  integrity sha512-GVUUPC8TuuFqHip0rxHkUqArQnlzmlXmTEBuXAWdgCv85zTCFH8nOHk/YCF5yo0Z2eOm8nOi90aWs0leJ4OE5Q==
+
+"@napi-rs/canvas-linux-x64-gnu@0.1.70":
+  version "0.1.70"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-linux-x64-gnu/-/canvas-linux-x64-gnu-0.1.70.tgz"
+  integrity sha512-/kvUa2lZRwGNyfznSn5t1ShWJnr/m5acSlhTV3eXECafObjl0VBuA1HJw0QrilLpb4Fe0VLywkpD1NsMoVDROQ==
+
+"@napi-rs/canvas-linux-x64-musl@0.1.70":
+  version "0.1.70"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-linux-x64-musl/-/canvas-linux-x64-musl-0.1.70.tgz"
+  integrity sha512-aqlv8MLpycoMKRmds7JWCfVwNf1fiZxaU7JwJs9/ExjTD8lX2KjsO7CTeAj5Cl4aEuzxUWbJPUUE2Qu9cZ1vfg==
+
+"@napi-rs/canvas-win32-x64-msvc@0.1.70":
+  version "0.1.70"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-0.1.70.tgz"
+  integrity sha512-Q9QU3WIpwBTVHk4cPfBjGHGU4U0llQYRXgJtFtYqqGNEOKVN4OT6PQ+ve63xwIPODMpZ0HHyj/KLGc9CWc3EtQ==
 
 "@napi-rs/canvas@^0.1.65":
   version "0.1.70"
@@ -139,6 +184,46 @@
   version "14.2.14"
   resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-14.2.14.tgz"
   integrity sha512-bsxbSAUodM1cjYeA4o6y7sp9wslvwjSkWw57t8DtC8Zig8aG8V6r+Yc05/9mDzLKcybb6EN85k1rJDnMKBd9Gw==
+
+"@next/swc-darwin-x64@14.2.14":
+  version "14.2.14"
+  resolved "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-14.2.14.tgz"
+  integrity sha512-cC9/I+0+SK5L1k9J8CInahduTVWGMXhQoXFeNvF0uNs3Bt1Ub0Azb8JzTU9vNCr0hnaMqiWu/Z0S1hfKc3+dww==
+
+"@next/swc-linux-arm64-gnu@14.2.14":
+  version "14.2.14"
+  resolved "https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-14.2.14.tgz"
+  integrity sha512-RMLOdA2NU4O7w1PQ3Z9ft3PxD6Htl4uB2TJpocm+4jcllHySPkFaUIFacQ3Jekcg6w+LBaFvjSPthZHiPmiAUg==
+
+"@next/swc-linux-arm64-musl@14.2.14":
+  version "14.2.14"
+  resolved "https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-14.2.14.tgz"
+  integrity sha512-WgLOA4hT9EIP7jhlkPnvz49iSOMdZgDJVvbpb8WWzJv5wBD07M2wdJXLkDYIpZmCFfo/wPqFsFR4JS4V9KkQ2A==
+
+"@next/swc-linux-x64-gnu@14.2.14":
+  version "14.2.14"
+  resolved "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-14.2.14.tgz"
+  integrity sha512-lbn7svjUps1kmCettV/R9oAvEW+eUI0lo0LJNFOXoQM5NGNxloAyFRNByYeZKL3+1bF5YE0h0irIJfzXBq9Y6w==
+
+"@next/swc-linux-x64-musl@14.2.14":
+  version "14.2.14"
+  resolved "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-14.2.14.tgz"
+  integrity sha512-7TcQCvLQ/hKfQRgjxMN4TZ2BRB0P7HwrGAYL+p+m3u3XcKTraUFerVbV3jkNZNwDeQDa8zdxkKkw2els/S5onQ==
+
+"@next/swc-win32-arm64-msvc@14.2.14":
+  version "14.2.14"
+  resolved "https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-14.2.14.tgz"
+  integrity sha512-8i0Ou5XjTLEje0oj0JiI0Xo9L/93ghFtAUYZ24jARSeTMXLUx8yFIdhS55mTExq5Tj4/dC2fJuaT4e3ySvXU1A==
+
+"@next/swc-win32-ia32-msvc@14.2.14":
+  version "14.2.14"
+  resolved "https://registry.npmjs.org/@next/swc-win32-ia32-msvc/-/swc-win32-ia32-msvc-14.2.14.tgz"
+  integrity sha512-2u2XcSaDEOj+96eXpyjHjtVPLhkAFw2nlaz83EPeuK4obF+HmtDJHqgR1dZB7Gb6V/d55FL26/lYVd0TwMgcOQ==
+
+"@next/swc-win32-x64-msvc@14.2.14":
+  version "14.2.14"
+  resolved "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-14.2.14.tgz"
+  integrity sha512-MZom+OvZ1NZxuRovKt1ApevjiUJTcU2PmdJKL66xUPaJeRywnbGGRWUlaAOwunD6dX+pm83vj979NTC8QXjGWg==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

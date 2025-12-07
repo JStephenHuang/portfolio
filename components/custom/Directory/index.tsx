@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Canvas from "@/components/Canvas";
 import Image from "next/image";
 
@@ -20,22 +20,25 @@ const Directory = ({
   initialY = 100,
 }: DirectoryProps) => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const resolvedHref = href.startsWith("/") ? href : `${pathname}/${href}`;
 
   return (
-    <Canvas.Item initialX={initialX} initialY={initialY} onClick={() => router.push(href)}>
+    <Canvas.Item initialX={initialX} initialY={initialY} onClick={() => router.push(resolvedHref)}>
       <div className="flex flex-col items-center gap-1">
-        <div className="w-16 h-16">
+        <div className="w-20 h-20">
           {/* Folder icon */}
           <Image
             src={image}
             alt="Document Icon"
             width={500}
             height={500}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-fill"
             draggable={false}
           />
         </div>
-        <span className="max-w-16 break-words text-center">{title}</span>
+        <span className="max-w-20 break-words text-center">{title}</span>
       </div>
     </Canvas.Item>
   );

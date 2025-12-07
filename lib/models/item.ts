@@ -26,5 +26,8 @@ export interface IDocument extends ICanvasItem {
   type: CanvasItemType.DOCUMENT;
   variant: DocumentVariant;
   href?: string; // Optional external link
-  content?: string; // Optional content for modal
+  content?: React.ReactNode; // Optional content for modal (supports JSX)
 }
+
+// Union type for all canvas items
+export type CanvasItem = IDirectory | IDocument;

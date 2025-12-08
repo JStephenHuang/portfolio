@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
+import clsx from "clsx";
+import "./styles.css";
 
 interface DraggableItemProps {
   children: React.ReactNode;
@@ -68,7 +70,10 @@ const DraggableItem = ({ children, onClick, initialX = 0, initialY = 0 }: Dragga
     >
       <div
         ref={nodeRef}
-        className={`absolute p-1 cursor-pointer ${isDragging || isSelected ? "outline-dotted outline-2" : ""}`}
+        className={clsx(
+          "canvas-item absolute p-1 cursor-pointer",
+          (isDragging || isSelected) && "outline-dotted outline-2",
+        )}
         style={{ zIndex }}
       >
         {children}
@@ -82,9 +87,9 @@ interface CanvasRootProps {
   className?: string;
 }
 
-const CanvasRoot = ({ children, className = "" }: CanvasRootProps) => {
+const CanvasRoot = ({ children, className }: CanvasRootProps) => {
   return (
-    <div className={`relative min-h-screen w-full h-full overflow-hidden ${className}`}>
+    <div className={clsx("relative min-h-screen w-full h-full overflow-hidden", className)}>
       {children}
     </div>
   );

@@ -17,13 +17,7 @@ export function useGridPositions<T extends PositionProps>(
   items: ComponentType<T>[],
   options: GridOptions = {},
 ) {
-  const {
-    cols = 4,
-    spacingX = 120,
-    spacingY = 140,
-    offsetX = 50,
-    offsetY = 50,
-  } = options;
+  const { cols = 4, spacingX = 120, spacingY = 140, offsetX = 100, offsetY = 100 } = options;
 
   return useMemo(
     () =>

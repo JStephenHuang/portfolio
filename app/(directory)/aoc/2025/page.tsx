@@ -6,6 +6,9 @@ import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark.css";
 
 const content = `
+
+<h1 align="center">Advent of Code 2025</h1>
+
 # Day 1
 
 ...
@@ -188,8 +191,8 @@ Time spent: **1:21:32.13**
 
 export default function AoC2025Page() {
   return (
-    <main className="w-screen h-screen bg-white relative overflow-auto py-12 px-6">
-      <article className="prose prose-neutral max-w-2xl mx-auto prose-headings:font-semibold prose-h1:text-2xl prose-h1:border-b prose-h1:pb-2 prose-h1:mb-4 prose-h2:text-lg prose-h2:mt-6 prose-p:leading-relaxed prose-code:text-sm prose-pre:p-0 prose-pre:bg-transparent">
+    <main className="w-screen min-h-screen relative flex flex-col items-center py-[5rem]">
+      <article className="prose prose-neutral max-w-2xl prose-headings:font-semibold prose-h1:text-2xl prose-h1:mb-4 prose-h2:text-lg prose-h2:mt-6 prose-p:leading-relaxed prose-code:text-sm prose-pre:p-0 prose-pre:bg-transparent">
         <Markdown rehypePlugins={[rehypeRaw, rehypeHighlight]}>{content}</Markdown>
       </article>
     </main>

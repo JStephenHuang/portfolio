@@ -16,6 +16,12 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontSize: {
+        ui: ["0.8125rem", { lineHeight: "1.5" }], // 13px - nav, canvas items
+        body: ["1rem", { lineHeight: "1.75" }], // 16px - body text
+        subtitle: ["1.125rem", { lineHeight: "1.5", fontWeight: "600" }], // 18px - h2
+        title: ["1.5rem", { lineHeight: "1.25", fontWeight: "600" }], // 24px - h1
+      },
     },
   },
   plugins: [typography],

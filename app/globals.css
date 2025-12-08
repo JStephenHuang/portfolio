@@ -2,31 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply font-medium
-  }
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-space-grotesk);
-  font-size: .8125rem;
-}
-
 @layer base {
   body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: var(--font-space-grotesk);
     @apply font-normal tracking-tight;
   }
-}
-
-@layer components {
-
 }
 

@@ -18,12 +18,12 @@ export const Nav = () => {
         <Link className="navlink place-self-center" href="/">
           j. stephen huang
         </Link>
-        <Link className="navlink place-self-end" href="/">
+        <Link className="navlink place-self-end" href="/about">
           about
         </Link>
       </div>
       {/* Footer */}
-      <div className="fixed left-8 bottom-8 right-8 z-50 flex justify-center gap-2">
+      <div className="fixed left-8 bottom-8 right-8 z-50 flex justify-center gap-2 pointer-events-none">
         <Link className="navlink" href="tel:5148368531">
           514 836 8531
         </Link>

@@ -5,14 +5,14 @@
 
 
 @layer components {
-    .nav-container {
-        @apply text-gray-500
-    }
-    .nav {
-        @apply  fixed left-8 top-8 right-8 z-50 grid grid-cols-3
+  .nav-container {
+    @apply text-ui text-gray-500 pointer-events-none
+  }
+  .nav {
+    @apply fixed left-8 top-8 right-8 z-50 grid grid-cols-3 pointer-events-none
 
-    }
+  }
   .navlink {
-    @apply w-fit hover:text-amber-600
+    @apply w-fit hover:text-amber-600 pointer-events-auto
   }
 }

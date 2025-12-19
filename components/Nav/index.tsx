@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "@/lib/hooks/useTheme";
 
 import "./styles.css";
 
 export const Nav = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="nav-container">
@@ -18,9 +20,14 @@ export const Nav = () => {
         <Link className="navlink place-self-center" href="/">
           j. stephen huang
         </Link>
-        <Link className="navlink place-self-end" href="/about">
-          about
-        </Link>
+        <div className="place-self-end flex items-center gap-3">
+          <Link className="navlink" href="/about">
+            about
+          </Link>
+          <button onClick={toggleTheme} className="navlink" disabled={!theme}>
+            [{theme ?? "..."}]
+          </button>
+        </div>
       </div>
       {/* Footer */}
       <div className="fixed left-8 bottom-8 right-8 z-50 flex justify-center gap-2 pointer-events-none">

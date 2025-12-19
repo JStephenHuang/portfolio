@@ -6,7 +6,7 @@ export default function AboutPage() {
         Studying <strong>computer engineering</strong> at the University of Waterloo. I like
         building things that feel good to use.
       </p>
-      <p className="text-neutral-500">Always learning.</p>
+      <p className="text-[var(--fg-muted)]">Always learning.</p>
     </main>
   );
 }

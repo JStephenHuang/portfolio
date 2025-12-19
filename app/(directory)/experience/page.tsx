@@ -12,7 +12,7 @@ export default function ExperiencePage() {
   const items = useGridPositions(experienceItems);
 
   return (
-    <main className="w-screen h-screen bg-white relative">
+    <main className="w-screen h-screen relative">
       <Canvas.Root>{items}</Canvas.Root>
     </main>
   );

@@ -3,16 +3,74 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background colors */
+  --bg: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-muted: #e5e5e5;
+
+  /* Foreground/text colors */
+  --fg: #171717;
+  --fg-secondary: #525252;
+  --fg-muted: #a3a3a3;
+
+  /* Border colors */
+  --border: #e5e5e5;
+  --border-muted: #d4d4d4;
+
+  /* Accent color */
+  --accent: #d97706;
+  --accent-hover: #b45309;
+
+  /* Code block */
+  --code-bg: #0d1117;
+  --code-header-bg: #ffffff;
+  --code-header-fg: #404040;
+  --code-header-border: #e5e5e5;
+
+  /* Modal */
+  --modal-backdrop: rgba(0, 0, 0, 0.5);
+}
+
+.dark {
+  /* Background colors */
+  --bg: #0a0a0a;
+  --bg-secondary: #171717;
+  --bg-muted: #262626;
+
+  /* Foreground/text colors */
+  --fg: #fafafa;
+  --fg-secondary: #a3a3a3;
+  --fg-muted: #737373;
+
+  /* Border colors */
+  --border: #262626;
+  --border-muted: #404040;
+
+  /* Accent color */
+  --accent: #f59e0b;
+  --accent-hover: #fbbf24;
+
+  /* Code block */
+  --code-bg: #0d1117;
+  --code-header-bg: #171717;
+  --code-header-fg: #d4d4d4;
+  --code-header-border: #262626;
+
+  /* Modal */
+  --modal-backdrop: rgba(0, 0, 0, 0.7);
 }
 
 @layer base {
-  body {
-    color: var(--foreground);
-    background: var(--background);
+  html, body {
+    color: var(--fg);
+    background: var(--bg);
     font-family: var(--font-space-grotesk);
-    @apply font-normal tracking-tight;
+    @apply font-normal tracking-tight min-h-screen;
   }
 }
 
+@layer components {
+  .text-link {
+    @apply text-[var(--fg-muted)] hover:text-[var(--accent)] underline underline-offset-2
+  }
+}

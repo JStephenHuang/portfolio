@@ -9,7 +9,7 @@ const Sheartak = ({ x, y }: Props) => (
   <Directory
     title="sheartak"
     href="sheartak"
-    image="/sheartak/logo.png"
+    icon="/sheartak/logo.png"
     initialX={x}
     initialY={y}
   />

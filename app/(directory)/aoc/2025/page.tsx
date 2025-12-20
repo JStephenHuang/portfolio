@@ -1,6 +1,6 @@
 "use client";
 
-import CodeBlockModal from "@/components/custom/CodeBlock";
+import CodeBlockModal from "@/components/custom/CodeBlockModal";
 import Link from "next/link";
 
 const completedDays = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 11]);

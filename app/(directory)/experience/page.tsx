@@ -3,11 +3,10 @@
 import Canvas from "@/components/Canvas";
 import GarmentSystem from "@/lib/data/directories/garment-system";
 import ParametricResearchLabs from "@/lib/data/directories/parametric-research-labs";
-import Sheartak from "@/lib/data/directories/sheartak";
 import { useGridPositions } from "@/lib/hooks/useGridPositions";
 
 export default function ExperiencePage() {
-  const experienceItems = [ParametricResearchLabs, GarmentSystem, Sheartak];
+  const experienceItems = [ParametricResearchLabs, GarmentSystem];
 
   const items = useGridPositions(experienceItems);
 

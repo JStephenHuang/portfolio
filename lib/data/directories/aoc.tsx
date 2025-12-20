@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const AoC = ({ x, y }: Props) => (
-  <Directory title="aoc" href="/aoc" image="/aoc/logo.png" initialX={x} initialY={y} />
+  <Directory title="aoc" href="/aoc" icon="/aoc/logo.png" initialX={x} initialY={y} />
 );
 
 export const AoC2025 = ({ x, y }: Props) => (

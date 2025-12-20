@@ -9,7 +9,7 @@ const ProjectsDirectory = ({ x, y }: Props) => (
   <Directory
     title="projects"
     href="/projects"
-    image="/root/projects-1.png"
+    icon="/root/projects-2.png"
     initialX={x}
     initialY={y}
   />

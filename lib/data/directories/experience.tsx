@@ -9,7 +9,7 @@ const ExperienceDirectory = ({ x, y }: Props) => (
   <Directory
     title="experience"
     href="/experience"
-    image="/root/experience-3.png"
+    icon="/root/experience-4.gif"
     initialX={x}
     initialY={y}
   />

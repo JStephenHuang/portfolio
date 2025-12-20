@@ -1,14 +1,14 @@
 "use client";
 
 import Canvas from "@/components/Canvas";
-import GarmentSystem from "@/lib/data/directories/garment-system";
+import Yap from "@/lib/data/directories/yap";
 
 export default function ProjectsPage() {
-  const projectsItems: React.ReactNode[] = [<GarmentSystem key={"gs"} />];
-
   return (
     <main className="w-screen h-screen relative">
-      <Canvas.Root>{projectsItems}</Canvas.Root>
+      <Canvas.Root>
+        <Yap x={100} y={100} />
+      </Canvas.Root>
     </main>
   );
 }

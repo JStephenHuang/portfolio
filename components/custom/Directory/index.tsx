@@ -1,46 +1,30 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import Canvas from "@/components/Canvas";
-import Image from "next/image";
+import CanvasIcon from "@/components/custom/CanvasIcon";
 
 interface DirectoryProps {
   title: string;
-  image?: string;
+  icon?: string;
   href: string;
   initialX?: number;
   initialY?: number;
 }
 
-const Directory = ({
-  title,
-  image = "/graphics/wave-1.png",
-  href,
-  initialX = 100,
-  initialY = 100,
-}: DirectoryProps) => {
+const Directory = ({ title, icon, href, initialX, initialY }: DirectoryProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
   const resolvedHref = href.startsWith("/") ? href : `${pathname}/${href}`;
 
   return (
-    <Canvas.Item initialX={initialX} initialY={initialY} onClick={() => router.push(resolvedHref)}>
-      <div className="flex flex-col items-center gap-1">
-        <div className="w-20 h-20">
-          {/* Folder icon */}
-          <Image
-            src={image}
-            alt="Document Icon"
-            width={500}
-            height={500}
-            className="w-full h-full object-fill"
-            draggable={false}
-          />
-        </div>
-        <span className="max-w-20 break-words text-center">{title}</span>
-      </div>
-    </Canvas.Item>
+    <CanvasIcon
+      title={title}
+      icon={icon}
+      onClick={() => router.push(resolvedHref)}
+      initialX={initialX}
+      initialY={initialY}
+    />
   );
 };
 

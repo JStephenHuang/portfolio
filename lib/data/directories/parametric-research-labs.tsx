@@ -9,7 +9,7 @@ const ParametricResearchLabs = ({ x, y }: Props) => (
   <Directory
     title="parametric research labs"
     href="prl"
-    image="/prl/logo.png"
+    icon="/prl/logo.png"
     initialX={x}
     initialY={y}
   />

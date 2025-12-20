@@ -9,7 +9,7 @@ const GarmentSystem = ({ x, y }: Props) => (
   <Directory
     title="garment system"
     href="garment-system"
-    image="/gs/logo.png"
+    icon="/gs/logo.png"
     initialX={x}
     initialY={y}
   />

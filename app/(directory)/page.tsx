@@ -2,10 +2,10 @@
 
 import Canvas from "@/components/Canvas";
 import { rootItems } from "@/lib/data/directories/root";
-import { useGridPositions } from "@/lib/hooks/useGridPositions";
+import { useLayoutPositions } from "@/lib/hooks/useLayoutPositions";
 
 export default function Home() {
-  const items = useGridPositions(rootItems);
+  const items = useLayoutPositions(rootItems);
 
   return (
     <main className="w-screen h-screen relative">

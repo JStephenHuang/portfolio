@@ -8,4 +8,8 @@
   .canvas-item {
       @apply text-ui;
   }
+
+  .canvas-item-transition {
+      transition: transform 0.3s ease-out;
+  }
 }

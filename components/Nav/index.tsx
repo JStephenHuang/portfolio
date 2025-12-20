@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useTheme } from "@/lib/hooks/useTheme";
+import { useSettings } from "@/lib/hooks/useSettings";
 
 import "./styles.css";
 
 export const Nav = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const { theme, toggleTheme } = useTheme();
+  const { theme, layout, toggleTheme, toggleLayout } = useSettings();
 
   return (
     <div className="nav-container">
@@ -24,6 +24,9 @@ export const Nav = () => {
           <Link className="navlink" href="/about">
             about
           </Link>
+          <button onClick={toggleLayout} className="navlink" disabled={!layout}>
+            [{layout ?? "..."}]
+          </button>
           <button onClick={toggleTheme} className="navlink" disabled={!theme}>
             [{theme ?? "..."}]
           </button>

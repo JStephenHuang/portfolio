@@ -16,11 +16,17 @@ interface DraggableItemProps {
 let highestZIndex = 1;
 
 const DraggableItem = ({ children, onClick, initialX = 0, initialY = 0 }: DraggableItemProps) => {
+  const [position, setPosition] = useState({ x: initialX, y: initialY });
   const [isDragging, setIsDragging] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [zIndex, setZIndex] = useState(1);
   const wasDraggedRef = useRef(false);
   const nodeRef = useRef<HTMLDivElement>(null);
+
+  // Update position when initialX/initialY props change (e.g., layout mode switch)
+  useEffect(() => {
+    setPosition({ x: initialX, y: initialY });
+  }, [initialX, initialY]);
 
   // Handle clicks outside to deselect
   useEffect(() => {
@@ -44,9 +50,10 @@ const DraggableItem = ({ children, onClick, initialX = 0, initialY = 0 }: Dragga
     setZIndex(highestZIndex);
   };
 
-  const handleDrag = () => {
+  const handleDrag = (_e: unknown, data: { x: number; y: number }) => {
     setIsDragging(true);
     wasDraggedRef.current = true;
+    setPosition({ x: data.x, y: data.y });
   };
 
   const handleStop = () => {
@@ -62,7 +69,8 @@ const DraggableItem = ({ children, onClick, initialX = 0, initialY = 0 }: Dragga
 
   return (
     <Draggable
-      defaultPosition={{ x: initialX, y: initialY }}
+      nodeRef={nodeRef}
+      position={position}
       onStart={handleStart}
       onDrag={handleDrag}
       onStop={handleStop}
@@ -72,6 +80,7 @@ const DraggableItem = ({ children, onClick, initialX = 0, initialY = 0 }: Dragga
         ref={nodeRef}
         className={clsx(
           "canvas-item absolute p-1 cursor-pointer",
+          !isDragging && "canvas-item-transition",
           (isDragging || isSelected) && "outline-dotted outline-2",
         )}
         style={{ zIndex }}

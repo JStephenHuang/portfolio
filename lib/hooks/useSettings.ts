@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 type Theme = "light" | "dark";
-type LayoutMode = "grid" | "scatter";
+type LayoutMode = "snap" | "free";
 
 interface Settings {
   theme: Theme | null;
@@ -19,7 +19,7 @@ export function useSettings() {
   useEffect(() => {
     const syncSettings = () => {
       const storedTheme = (localStorage.getItem("theme") as Theme) || "light";
-      const storedLayout = (localStorage.getItem("layout") as LayoutMode) || "grid";
+      const storedLayout = (localStorage.getItem("layout") as LayoutMode) || "snap";
       setSettings({ theme: storedTheme, layout: storedLayout });
       document.documentElement.classList.toggle("dark", storedTheme === "dark");
     };
@@ -41,7 +41,7 @@ export function useSettings() {
   };
 
   const toggleLayout = () => {
-    const newLayout = settings.layout === "grid" ? "scatter" : "grid";
+    const newLayout = settings.layout === "snap" ? "free" : "snap";
     setSettings((prev) => ({ ...prev, layout: newLayout }));
     localStorage.setItem("layout", newLayout);
     window.dispatchEvent(new Event("settingschange"));

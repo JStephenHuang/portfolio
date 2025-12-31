@@ -27,7 +27,7 @@ export default function AoC2025Page() {
                 {completedDays.has(day) ? (
                   <CodeBlockModal filename={`day${day}.py`} src={`/aoc/2025/day${day}.py`} />
                 ) : (
-                  <span className="text-ui text-[var(--fg-muted)]">not solved (cuz im bad)</span>
+                  <span className="text-ui text-[var(--fg-muted)]">not solved yet</span>
                 )}
               </li>
             ))}

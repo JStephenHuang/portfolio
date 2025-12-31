@@ -1,113 +1,175 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import Draggable from "react-draggable";
+import { useRef, useEffect, createContext, useContext, useState, useId } from "react";
+import { createDraggable } from "animejs";
+import type { Draggable } from "animejs";
 import clsx from "clsx";
+import { useSettings } from "@/lib/hooks/useSettings";
+import { GRID_SIZE_X, GRID_SIZE_Y } from "@/lib/constants";
 import "./styles.css";
 
-interface DraggableItemProps {
+// Context for passing layout mode to items
+type LayoutMode = "snap" | "free" | null;
+
+interface CanvasContextType {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  layout: LayoutMode;
+  activeItemId: string | null;
+  setActiveItemId: (id: string | null) => void;
+}
+
+const CanvasContext = createContext<CanvasContextType | null>(null);
+
+// Custom hook to access canvas context
+export const useDraggableCanvas = () => {
+  const context = useContext(CanvasContext);
+  if (!context) {
+    throw new Error("useDraggableCanvas must be used within a Canvas.Root");
+  }
+  return context;
+};
+
+// Track z-index globally
+let topZIndex = 1;
+
+// ============================================
+// Canvas.Item - Draggable item component
+// ============================================
+interface ItemProps {
   children: React.ReactNode;
-  onClick?: () => void; // Triggered only on click, not drag
+  onClick?: () => void;
   initialX?: number;
   initialY?: number;
 }
 
-// Track the highest z-index globally
-let highestZIndex = 1;
+const Item = ({ children, onClick, initialX = 0, initialY = 0 }: ItemProps) => {
+  const { containerRef, layout, activeItemId, setActiveItemId } = useDraggableCanvas();
 
-const DraggableItem = ({ children, onClick, initialX = 0, initialY = 0 }: DraggableItemProps) => {
-  const [position, setPosition] = useState({ x: initialX, y: initialY });
-  const [isDragging, setIsDragging] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
-  const [zIndex, setZIndex] = useState(1);
-  const wasDraggedRef = useRef(false);
   const nodeRef = useRef<HTMLDivElement>(null);
+  const draggableRef = useRef<Draggable | null>(null);
+  const wasDragged = useRef(false);
+  const positionRef = useRef<{ x: number; y: number } | null>(null);
+  const prevLayoutRef = useRef<LayoutMode>(null);
 
-  // Update position when initialX/initialY props change (e.g., layout mode switch)
+  const itemId = useId();
+  const [zIndex, setZIndex] = useState(1);
+  const isActive = activeItemId === itemId;
+
   useEffect(() => {
-    setPosition({ x: initialX, y: initialY });
-  }, [initialX, initialY]);
+    if (!nodeRef.current || !containerRef?.current) return;
 
-  // Handle clicks outside to deselect
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (nodeRef.current && !nodeRef.current.contains(e.target as Node)) {
-        setIsSelected(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const handleStart = () => {
-    setIsDragging(true);
-    wasDraggedRef.current = false;
-    // Bring to front when starting to drag
-    highestZIndex += 1;
-    setZIndex(highestZIndex);
-  };
-
-  const handleDrag = (_e: unknown, data: { x: number; y: number }) => {
-    setIsDragging(true);
-    wasDraggedRef.current = true;
-    setPosition({ x: data.x, y: data.y });
-  };
-
-  const handleStop = () => {
-    setIsDragging(false);
-
-    // If no significant dragging occurred, treat it as a click
-    if (!wasDraggedRef.current && onClick) {
-      onClick();
+    // Save current position before recreating draggable
+    if (draggableRef.current) {
+      positionRef.current = { x: draggableRef.current.x, y: draggableRef.current.y };
+      draggableRef.current.revert();
     }
 
-    setIsSelected(true);
-  };
+    // Create draggable with snap based on layout mode
+    draggableRef.current = createDraggable(nodeRef.current, {
+      container: containerRef.current,
+      containerFriction: 1,
+      snap: layout === "snap" ? GRID_SIZE_X : undefined,
+      cursor: {
+        onHover: "pointer",
+        onGrab: "grabbing",
+      },
+      onGrab: () => {
+        wasDragged.current = false;
+        topZIndex += 1;
+        setZIndex(topZIndex);
+        setActiveItemId(itemId);
+      },
+      onDrag: () => {
+        wasDragged.current = true;
+      },
+      onRelease: () => {
+        if (draggableRef.current) {
+          positionRef.current = { x: draggableRef.current.x, y: draggableRef.current.y };
+        }
+        if (!wasDragged.current) {
+          onClick?.();
+        }
+      },
+    });
+
+    // Set position: use saved position or initial
+    const x = positionRef.current?.x ?? initialX;
+    const y = positionRef.current?.y ?? initialY;
+    draggableRef.current.setX(x);
+    draggableRef.current.setY(y);
+
+    if (positionRef.current === null) {
+      positionRef.current = { x: initialX, y: initialY };
+    }
+
+    prevLayoutRef.current = layout ?? null;
+
+    return () => {
+      if (draggableRef.current) {
+        positionRef.current = { x: draggableRef.current.x, y: draggableRef.current.y };
+      }
+    };
+  }, [onClick, containerRef, layout, initialX, initialY, itemId, setActiveItemId]);
 
   return (
-    <Draggable
-      nodeRef={nodeRef}
-      position={position}
-      onStart={handleStart}
-      onDrag={handleDrag}
-      onStop={handleStop}
-      bounds="parent" // Constrains dragging within parent boundaries
+    <div
+      ref={nodeRef}
+      className={clsx("canvas-item absolute p-1", isActive && "outline-dotted outline-2")}
+      style={{ zIndex }}
     >
-      <div
-        ref={nodeRef}
-        className={clsx(
-          "canvas-item absolute p-1 cursor-pointer",
-          !isDragging && "canvas-item-transition",
-          (isDragging || isSelected) && "outline-dotted outline-2",
-        )}
-        style={{ zIndex }}
-      >
-        {children}
-      </div>
-    </Draggable>
-  );
-};
-
-interface CanvasRootProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-const CanvasRoot = ({ children, className }: CanvasRootProps) => {
-  return (
-    <div className={clsx("relative min-h-screen w-full h-full overflow-hidden", className)}>
       {children}
     </div>
   );
 };
 
-// Compound component pattern
+// ============================================
+// Canvas.Root - Container component
+// ============================================
+interface RootProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const Root = ({ children, className }: RootProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeItemId, setActiveItemId] = useState<string | null>(null);
+  const { layout } = useSettings();
+
+  const handleBackgroundClick = (e: React.MouseEvent) => {
+    if (e.target === containerRef.current) {
+      setActiveItemId(null);
+    }
+  };
+
+  return (
+    <CanvasContext.Provider value={{ containerRef, layout, activeItemId, setActiveItemId }}>
+      <div
+        ref={containerRef}
+        className={clsx(
+          "canvas-root relative min-h-screen w-full h-full overflow-hidden",
+          layout === "snap" && "canvas-grid",
+          className,
+        )}
+        style={
+          {
+            "--grid-size-x": `${GRID_SIZE_X}px`,
+            "--grid-size-y": `${GRID_SIZE_Y}px`,
+          } as React.CSSProperties
+        }
+        onMouseDown={handleBackgroundClick}
+      >
+        {children}
+      </div>
+    </CanvasContext.Provider>
+  );
+};
+
+// ============================================
+// Export compound component
+// ============================================
 const Canvas = {
-  Root: CanvasRoot,
-  Item: DraggableItem,
+  Root,
+  Item,
 };
 
 export default Canvas;

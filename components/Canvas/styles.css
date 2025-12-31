@@ -6,10 +6,29 @@
 
 @layer components {
   .canvas-item {
-      @apply text-ui;
+      @apply text-ui select-none;
   }
 
-  .canvas-item-transition {
-      transition: transform 0.3s ease-out;
+  .canvas-root::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size-x) var(--grid-size-y);
+    background-position: -16px -4px;
+    --grid-color: rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .dark .canvas-root::before {
+    --grid-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .canvas-root.canvas-grid::before {
+    opacity: 1;
   }
 }

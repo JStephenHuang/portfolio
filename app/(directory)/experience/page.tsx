@@ -7,7 +7,6 @@ import { useLayoutPositions } from "@/lib/hooks/useLayoutPositions";
 
 export default function ExperiencePage() {
   const experienceItems = [ParametricResearchLabs, GarmentSystem];
-
   const items = useLayoutPositions(experienceItems);
 
   return (

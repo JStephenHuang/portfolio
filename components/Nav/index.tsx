@@ -38,8 +38,8 @@ export const Nav = () => {
           514 836 8531
         </Link>
         <span>/</span>
-        <Link className="navlink" href="mailto:js3huang@uwaterloo.ca">
-          js3huang@uwaterloo
+        <Link className="navlink" href="mailto:jstephhuang@gmail.com">
+          jstephhuang@gmail.com
         </Link>
         <span>/</span>
         <Link className="navlink" href="https://linkedin.com/in/jstephenhuang">

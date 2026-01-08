@@ -5,14 +5,16 @@ interface Props {
   y?: number;
 }
 
-const ParametricResearchLabs = ({ x, y }: Props) => (
-  <Directory
-    title="parametric research labs"
-    href="prl"
-    icon="/prl/logo.png"
-    initialX={x}
-    initialY={y}
-  />
-);
+const ParametricResearchLabs = ({ x, y }: Props) => {
+  return (
+    <Directory
+      title="parametric research labs"
+      href="prl"
+      icon="/prl/logo.png"
+      initialX={x}
+      initialY={y}
+    />
+  );
+};
 
 export default ParametricResearchLabs;

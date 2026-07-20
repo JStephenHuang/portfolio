@@ -1,22 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useSettings } from "@/lib/hooks/useSettings";
 
 import "./styles.css";
 
 export const Nav = () => {
   const pathname = usePathname();
-  const router = useRouter();
   const { theme, layout, toggleTheme, toggleLayout } = useSettings();
 
   return (
     <div className="nav-container">
       <div className="nav">
-        <button onClick={() => pathname !== "/" && router.back()} className="navlink">
+        <Link href="/" className="navlink" aria-label="Return to gallery">
           {pathname}
-        </button>
+        </Link>
         <Link className="navlink place-self-center" href="/">
           j. stephen huang
         </Link>

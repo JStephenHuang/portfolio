@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer components {
   .nav-container {
     @apply text-ui pointer-events-none;

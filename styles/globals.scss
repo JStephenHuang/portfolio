@@ -1,0 +1,302 @@
+:root {
+  color-scheme: only light;
+
+  /* Fonts */
+  --font-family: var(--font-geist), var(--font-noto), "Helvetica Neue", sans-serif;
+
+  /* Font sizes */
+  --font-size-fluid-xxxs: 9px;
+  --font-size-fluid-xxs: 10px;
+  --font-size-fluid-xs: 11px;
+  --font-size-fluid-sm: 12px;
+  --font-size-fluid-base: 13px;
+  --font-size-fluid-lg: 15px;
+  --font-size-fluid-xl: 16px;
+  --font-size-fluid-xxl: 18px;
+
+  /* Font weights */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* Line heights */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.675;
+  --line-height-loose: 2;
+
+  /* Spacing */
+  --spacing-none: 0;
+  --spacing-dot: 2px;
+  --spacing-room: 4px;
+  --spacing-house: 8px;
+  --spacing-street: 12px;
+  --spacing-city: 16px;
+  --spacing-state: 24px;
+  --spacing-country: 32px;
+  --spacing-continent: 40px;
+  --spacing-planet: 48px;
+  --spacing-universe: 60px;
+  --spacing-galaxy: 72px;
+  --spacing-cluster: 80px;
+
+  /* Brand colors */
+  --color-accent: #617168;
+  --color-accent-dark: #373d35;
+  --color-accent-light: #e0e4e4;
+  --color-accent-extra-light: #eff0ef;
+
+  /* Neutral colors */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-beige: #f4f1ec;
+  --color-gray-100: #f9f9f9;
+  --color-gray-200: #f5f5f5;
+  --color-gray-300: #d9d9d9;
+  --color-gray-400: #b3b3b3;
+  --color-gray-500: #696969;
+  --color-gray-700: #373737;
+
+  /* Semantic colors */
+  --color-success: #65c08c;
+  --color-success-light: #e1f5e2;
+  --color-success-extra-light: #f8fcf8;
+  --color-warning: #ead176;
+  --color-warning-light: #fef8ed;
+  --color-warning-extra-light: #fffbf0;
+  --color-danger: #fc917a;
+  --color-error: #f03456;
+  --color-error-light: #ffe1e1;
+  --color-error-extra-light: #fff6f6;
+  --color-info: #89abe3;
+  --color-info-light: #e0f2ff;
+  --color-info-extra-light: #f5fbff;
+  --color-idea: #9595d2;
+  --color-idea-light: #ededf7;
+  --color-idea-extra-light: #f7f7fb;
+  --color-neutral: #696969;
+
+  /* Text colors */
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-gray-700);
+  --color-text-disabled: var(--color-gray-300);
+  --color-text-inverse: var(--color-white);
+
+  /* Background colors */
+  --color-bg-primary: var(--color-white);
+  --color-bg-secondary: var(--color-gray-200);
+  --color-bg-alert: var(--color-error-extra-light);
+  --color-bg-alert-hover: var(--color-error-light);
+
+  /* Borders */
+  --color-border-primary: var(--color-gray-500);
+  --color-border-secondary: var(--color-gray-300);
+  --color-border-width: 1px;
+  --border-radius-xxs: 4px;
+  --border-radius-xs: 6px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 20px;
+  --border-radius-xxl: 24px;
+
+  /* Box shadow */
+  --box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
+
+  /* Skeleton / shimmer (highlight + border overridden in dark; duration is theme-independent) */
+  --skeleton-shimmer-highlight: rgba(255, 255, 255, 0.72);
+  --skeleton-border: rgba(0, 0, 0, 0.05);
+  --skeleton-shimmer-duration: 1.35s;
+  --wizard-skeleton-shine: rgba(255, 255, 255, 0.85);
+
+  /* Translucent overlays */
+  --color-scrim-dialog: rgba(255, 255, 255, 0.4);
+  --toast-panel-bg: rgba(255, 255, 255, 0.5);
+  --toast-panel-border: rgba(0, 0, 0, 0.12);
+  /* Dropdown / menu panels (Menu, Select, navbar account menus) */
+  --menu-panel-bg: rgba(255, 255, 255, 0.5);
+  --menu-panel-border: var(--color-accent);
+  --menu-panel-blur: 10px;
+  --menu-item-hover-bg: color-mix(in oklab, var(--color-gray-100) 30%, transparent);
+  --toast-success-bg: rgba(240, 252, 244, 0.72);
+  --toast-error-bg: rgba(254, 242, 242, 0.72);
+  /* Info toasts: neutral surface for non-alarming in-product guidance */
+  --toast-info-bg: rgba(255, 255, 255, 0.5);
+  --toast-info-border: rgba(0, 0, 0, 0.12);
+
+  --z-index-base: 0;
+  --z-index-above-base: 1;
+  --z-index-feedback: 1;
+  --z-index-caret: 2;
+  --z-index-panel: 2;
+  --z-index-sidebar: 3;
+  --z-index-overlay: 8;
+  --z-index-cookie-banner: 9;
+  --z-index-dialog-overlay: 2000;
+  --z-index-dialog: 2001;
+  --z-index-dropdown-menu: 2002;
+  --z-index-tooltip: 2003;
+  --z-index-secondary-dropdown-menu: 2004;
+  --z-index-toast: 2005;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+html.dark,
+.theme-dark {
+  color-scheme: dark;
+
+  /* Brand */
+  --color-accent: #b8c9bc;
+  --color-accent-dark: #8fa196;
+  --color-accent-light: #5f6e66;
+  --color-accent-extra-light: #4d5852;
+
+  /* Neutrals — cool slate (slight chroma) so dark UI reads vivid, not flat charcoal */
+  --color-gray-100: #23262d;
+  --color-gray-200: #2e323c;
+  --color-gray-300: #414654;
+  --color-gray-400: #63697a;
+  --color-gray-500: #b4bac8;
+  --color-gray-700: #eef0f6;
+
+  /* Warm counter-tint vs gray ramp */
+  --color-beige: #262320;
+
+  /* Semantic surfaces — stronger hue + luminance for chips / alerts */
+  --color-success-light: #3a6b50;
+  --color-success-extra-light: #2d503d;
+  --color-warning-light: #6c5c30;
+  --color-warning-extra-light: #4e4322;
+  --color-error-light: #7d3849;
+  --color-error-extra-light: #5c2834;
+  --color-info-light: #3e5f8c;
+  --color-info-extra-light: #304b6e;
+  --color-idea-light: #5e5e90;
+  --color-idea-extra-light: #454466;
+
+  /* Core semantic hues — higher chroma on dark */
+  --color-success: #72dcb8;
+  --color-warning: #f2e18f;
+  --color-danger: #f0a090;
+  --color-error: #f0a5c4;
+  --color-info: #98b7ff;
+  --color-idea: #b6b6ff;
+  --color-neutral: #c2c7d6;
+
+  /* Skeleton / shimmer — low-contrast sweep on dark track */
+  --skeleton-shimmer-highlight: rgba(255, 255, 255, 0.07);
+  --skeleton-border: rgba(255, 255, 255, 0.07);
+  --wizard-skeleton-shine: rgba(255, 255, 255, 0.09);
+
+  --color-scrim-dialog: rgba(0, 0, 0, 0.62);
+  --toast-panel-bg: rgba(36, 36, 36, 0.92);
+  --toast-panel-border: rgba(255, 255, 255, 0.1);
+  /* Dropdown / menu panels — softer dark glass so accent border still reads */
+  --menu-panel-bg: rgba(24, 24, 26, 0.6);
+  --menu-panel-border: var(--color-accent);
+  --menu-item-hover-bg: color-mix(in oklab, var(--color-gray-300) 40%, transparent);
+  --toast-success-bg: rgba(22, 40, 30, 0.88);
+  --toast-error-bg: rgba(40, 24, 28, 0.88);
+  --toast-info-bg: rgba(34, 34, 38, 0.94);
+  --toast-info-border: rgba(255, 255, 255, 0.12);
+
+  /* Text */
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: var(--color-gray-500);
+  --color-text-disabled: var(--color-gray-400);
+  --color-text-inverse: #0a0a0a;
+
+  /* Backgrounds */
+  --color-bg-primary: #0f0f0f;
+  --color-bg-secondary: #090909;
+  --color-bg-alert: var(--color-error-extra-light);
+  --color-bg-alert-hover: var(--color-error-light);
+
+  /* Borders */
+  --color-border-primary: var(--color-gray-400);
+  --color-border-secondary: var(--color-gray-300);
+
+  --box-shadow: 4px 4px 14px 0px rgba(0, 0, 0, 0.45);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body,
+html {
+  font-family: var(--font-family, sans-serif);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-fluid-base);
+  line-height: var(--line-height-normal);
+  font-synthesis-weight: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  min-height: 100svh;
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+  color: var(--color-text-primary);
+
+  width: 100%;
+  margin: var(--spacing-none);
+  background-color: var(--color-bg-primary);
+
+  & > #root {
+    min-height: 100svh;
+  }
+}
+
+::-moz-selection {
+  color: var(--color-text-inverse);
+  background: var(--color-accent);
+}
+
+::selection {
+  color: var(--color-text-inverse);
+  background: var(--color-accent);
+}
+
+h1 {
+  margin: var(--spacing-none);
+  font-size: var(--font-size-fluid-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+h2 {
+  margin: var(--spacing-none);
+  font-size: var(--font-size-fluid-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+h3 {
+  margin: var(--spacing-none);
+  font-size: var(--font-size-fluid-base);
+  font-weight: var(--font-weight-bold);
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--color-text-primary);
+}
+
+p {
+  font-size: var(--font-size-fluid-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+* {
+  box-sizing: border-box;
+}

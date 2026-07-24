@@ -7,10 +7,6 @@ import styles from "./styles.module.scss";
 const Home = () => {
   return (
     <main className={styles.page}>
-      <SpinnerExample />
-      <ButtonExample />
-      <FormExample />
-      <DialogExample />
     </main>
   );
 };

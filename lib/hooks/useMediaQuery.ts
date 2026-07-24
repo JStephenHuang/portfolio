@@ -15,3 +15,5 @@ export const useMediaQuery = (query: string): boolean => {
 
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 };
+
+export const isMobile = useMediaQuery("(max-width: 768px)");

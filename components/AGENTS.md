@@ -3,6 +3,7 @@
 Reusable React components, grouped by domain.
 
 - `ui/` holds presentational primitives;
+- `custom/` holds portfolio-specific composed components;
 - `form/` holds form-field components wired for React Hook Form.
 - `primitives/` holds headless components (e.g. Ark UI) vendored and given styles via a `styles.module.scss`.
 

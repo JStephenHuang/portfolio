@@ -1,0 +1,16 @@
+.content {
+  z-index: var(--z-index-tooltip);
+  max-width: 190px;
+  padding: var(--spacing-house) var(--spacing-street);
+  border-radius: var(--border-radius-xs);
+  background: var(--color-text-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-fluid-sm);
+  line-height: var(--line-height-snug);
+  pointer-events: none;
+}
+
+.arrow {
+  --arrow-background: var(--color-text-primary);
+  --arrow-size: 6px;
+}

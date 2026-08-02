@@ -1,0 +1,164 @@
+$portfolio-item-size: 170px;
+$portfolio-item-size-mobile: 100px;
+
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow-x: clip;
+  overflow-y: hidden;
+  background: var(--color-bg-portfolio);
+}
+
+.collectionLabel {
+  position: fixed;
+  z-index: var(--z-index-panel);
+  top: var(--spacing-country);
+  left: 50%;
+  display: flex;
+  gap: var(--spacing-house);
+  color: rgb(23 23 23 / 52%);
+  font-size: var(--font-size-fluid-sm);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.board {
+  min-height: max(100svh, 700px);
+  overflow: hidden;
+}
+
+.tile {
+  z-index: 1;
+  width: $portfolio-item-size;
+  height: $portfolio-item-size;
+}
+
+.fixed {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(3, $portfolio-item-size);
+  grid-auto-columns: $portfolio-item-size;
+  align-content: end;
+  justify-content: start;
+  row-gap: var(--spacing-continent);
+  column-gap: var(--spacing-city);
+  padding: 104px var(--spacing-country) var(--spacing-universe);
+  overflow: visible;
+
+  .tile {
+    cursor: default;
+    touch-action: auto;
+  }
+
+  .tile:nth-child(3n + 1) {
+    grid-row: 3;
+  }
+
+  .tile:nth-child(3n + 2) {
+    grid-row: 2;
+  }
+
+  .tile:nth-child(3n) {
+    grid-row: 1;
+  }
+}
+
+.freed {
+  position: relative;
+  height: max(100svh, 700px);
+
+  .tile {
+    position: absolute;
+  }
+
+  .slot1 {
+    top: 14%;
+    left: 5%;
+  }
+
+  .slot2 {
+    top: 11%;
+    left: 38%;
+  }
+
+  .slot3 {
+    top: 18%;
+    right: 6%;
+  }
+
+  .slot4 {
+    top: 58%;
+    left: 11%;
+  }
+
+  .slot5 {
+    top: 52%;
+    left: 44%;
+  }
+
+  .slot6 {
+    top: 64%;
+    right: 5%;
+  }
+}
+
+@media (max-width: 900px) {
+  .freed {
+    .slot2 {
+      top: 12%;
+      left: auto;
+      right: 5%;
+    }
+
+    .slot3 {
+      top: 41%;
+      right: 8%;
+    }
+
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    min-height: max(100svh, 700px);
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .collectionLabel {
+    display: none;
+  }
+
+  .tile {
+    width: $portfolio-item-size-mobile;
+    height: $portfolio-item-size-mobile;
+  }
+
+  .fixed {
+    grid-template-rows: repeat(3, $portfolio-item-size-mobile);
+    grid-auto-columns: $portfolio-item-size-mobile;
+    padding: 104px var(--spacing-city) var(--spacing-universe);
+  }
+
+  .freed {
+    min-height: max(100svh, 700px);
+    height: max(100svh, 700px);
+
+    .slot1 {
+      top: clamp(112px, 18svh, 160px);
+      left: clamp(16px, 8vw, 36px);
+    }
+
+    .slot2 {
+      top: clamp(290px, 42svh, 370px);
+      right: clamp(16px, 8vw, 36px);
+    }
+
+    .slot3 {
+      top: clamp(450px, 64svh, 560px);
+      right: auto;
+      left: clamp(28px, 14vw, 64px);
+    }
+  }
+}

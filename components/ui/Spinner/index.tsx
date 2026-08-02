@@ -11,12 +11,11 @@ interface SpinnerProps {
   label?: string;
 }
 
-const Spinner = ({ size = 16, className, label = "Loading" }: SpinnerProps) => (
+const Spinner = ({ size = 16, className }: SpinnerProps) => (
   <CircleNotchIcon
     size={size}
     weight="bold"
     role="status"
-    aria-label={label}
     className={classNames(styles.spinner, className)}
   />
 );

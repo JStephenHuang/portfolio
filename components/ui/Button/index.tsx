@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import Link from "next/link";
 import type React from "react";
 
 import { Spinner } from "../Spinner";
@@ -6,6 +7,10 @@ import styles from "./styles.module.scss";
 
 interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
   isLoading?: boolean;
+  align?: "left" | "center" | "right";
+}
+
+interface LinkButtonProps extends React.ComponentPropsWithRef<typeof Link> {
   align?: "left" | "center" | "right";
 }
 
@@ -53,10 +58,17 @@ const SecondaryButton = ({ children, className, ...props }: ButtonProps) => (
   </ButtonBase>
 );
 
-const LinkButton = ({ children, className, align = "left", ...props }: ButtonProps) => (
-  <ButtonBase {...props} align={align} className={classNames(styles.link, className)}>
-    {children}
-  </ButtonBase>
+const LinkButton = ({ children, className, align = "center", ...props }: LinkButtonProps) => (
+  <Link {...props} className={classNames(styles.link, className)}>
+    <span
+      className={classNames(
+        styles["label-slot"],
+        styles[`label-slot--align-${align}`],
+      )}
+    >
+      {children}
+    </span>
+  </Link>
 );
 
 export { PrimaryButton as Primary, SecondaryButton as Secondary, LinkButton as Link };

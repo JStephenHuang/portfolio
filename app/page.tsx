@@ -1,14 +1,7 @@
-import { ButtonExample } from "./_components/ButtonExample";
-import { DialogExample } from "./_components/DialogExample";
-import { FormExample } from "./_components/FormExample";
-import { SpinnerExample } from "./_components/SpinnerExample";
-import styles from "./styles.module.scss";
+import { PortfolioBoard } from "./_components/PortfolioBoard";
 
 const Home = () => {
-  return (
-    <main className={styles.page}>
-    </main>
-  );
+  return <PortfolioBoard />;
 };
 
 export default Home;

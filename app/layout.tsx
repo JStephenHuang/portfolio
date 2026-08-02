@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Manrope, Roboto_Mono, Space_Grotesk } from "next/font/google";
 
 import { Nav } from "./_components/Nav";
+import { Providers } from "./providers";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -20,10 +21,17 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <html lang="en" className={fontVariables}>
+    <html
+      lang="en"
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body>
-        <Nav />
-        {children}
+        <Providers>
+          <Nav />
+          {children}
+        </Providers>
       </body>
     </html>
   );

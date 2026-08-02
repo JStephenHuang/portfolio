@@ -93,6 +93,7 @@
   /* Background colors */
   --color-bg-primary: var(--color-white);
   --color-bg-secondary: var(--color-gray-200);
+  --color-bg-portfolio: #f0eee8;
   --color-bg-alert: var(--color-error-extra-light);
   --color-bg-alert-hover: var(--color-error-light);
 
@@ -250,7 +251,8 @@ html {
 
   width: 100%;
   margin: var(--spacing-none);
-  background-color: var(--color-bg-primary);
+  overflow-x: clip;
+  background-color: var(--color-bg-portfolio);
 
   & > #root {
     min-height: 100svh;

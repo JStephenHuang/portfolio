@@ -1,4 +1,4 @@
-# portfolio-rebuild overview
+# portfolio overview
 
 This repository is a nextjs starter repo with extremely scalable, clear, documented, and conventional code for starting a Next.js project.
 
@@ -21,8 +21,14 @@ resets git history with a fresh initial commit, and removes the `scripts/` direc
 
 - Use arrow functions with `:React.FC<Props>` or `React.ComponentProps<Type>` or `React.ComponentPropsWithRef<Type>`.
 - Use functional error handling methods under `error.ts`.
+- Never call React hooks at module scope; expose a `use...` wrapper instead.
+- Use storage and browser-query hooks from `@mantine/hooks` instead of maintaining local implementations.
+- Keep shared portfolio settings in `components/custom/SettingsContext`.
+- Manage color theme with `next-themes` in `app/providers.tsx`, outside `SettingsContext`.
 - Don't add comments
 - Don't run lint and tests after every change but ONLY when specified by the user
+- Don't add any aria fields if not necessary
+- We are trying to write the least amount of code possible
 
 ## Commands
 

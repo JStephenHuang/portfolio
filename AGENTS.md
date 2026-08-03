@@ -35,3 +35,6 @@ resets git history with a fresh initial commit, and removes the `scripts/` direc
 ## New changes
 
 - Update the AGENTS.md and CLAUDE.md for updated or errors that you should not do!
+- AirHockey item starting positions use normalized `initialX` and `initialY` props.
+- AirHockey item positions and stacking order persist with Mantine's local-storage hook; the latest dragged item is promoted, and z-indexes normalize at 100.
+- AirHockey items remain hidden until their measured initial positions are applied.

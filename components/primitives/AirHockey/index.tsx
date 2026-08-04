@@ -105,6 +105,10 @@ const Item: React.FC<ItemProps> = ({
     };
   }, [measureBounds, rinkRef]);
 
+  useEffect(() => {
+    if (off) settle();
+  }, [off, settle]);
+
   useAnimationFrame((_, delta) => {
     const bounds = boundsRef.current;
 

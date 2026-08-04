@@ -1,4 +1,4 @@
-# portfolio-rebuild overview
+# portfolio overview
 
 This repository is a nextjs starter repo with extremely scalable, clear, documented, and conventional code for starting a Next.js project.
 
@@ -31,10 +31,3 @@ resets git history with a fresh initial commit, and removes the `scripts/` direc
 - Use `pnpm remove [dep-name]` to remove dependencies
 - Use `pnpm lint` to run eslint
 - Use `pnpm setup` once after cloning to rename the project
-
-## New changes
-
-- Update the AGENTS.md and CLAUDE.md for updated or errors that you should not do!
-- AirHockey item starting positions use normalized `initialX` and `initialY` props.
-- AirHockey item positions and stacking order persist with Mantine's local-storage hook; the latest dragged item is promoted, and z-indexes normalize at 100.
-- AirHockey items remain hidden until their measured initial positions are applied.

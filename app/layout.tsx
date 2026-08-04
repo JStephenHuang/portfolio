@@ -1,16 +1,9 @@
 import "@/styles/globals.scss";
-import classNames from "classnames";
 import type { Metadata } from "next";
-// import localFont from "next/font/local";
+import { Space_Grotesk } from "next/font/google";
 
-import { Space_Grotesk, Manrope } from "next/font/google";
-
-// const _ = localFont({
-//   src: "./_fonts/_.ttf",
-//   display: "swap",
-//   variable: "--font-_",
-//   preload: true,
-// });
+import Nav from "./_components/Nav";
+import { Providers } from "./providers";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -19,22 +12,20 @@ const spaceGrotesk = Space_Grotesk({
   preload: true,
 });
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-  preload: true,
-});
-
 export const metadata: Metadata = {
-  title: "j.stephen huang",
-  description: "j. stephen huang's portfolio",
+  title: "jsh",
+  description: "jsh | portfolio",
 };
 
-const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
+const RootLayout: React.FC<Readonly<React.PropsWithChildren>> = ({ children }) => {
   return (
-    <html lang="en" className={classNames(spaceGrotesk.variable, manrope.variable)}>
-      <body>{children}</body>
+    <html lang="en" className={spaceGrotesk.variable} suppressHydrationWarning>
+      <body>
+        <Providers>
+          <Nav />
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 };

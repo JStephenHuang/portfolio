@@ -65,6 +65,7 @@ export const useArrangedItems = (rawItems: Item[], key: string) => {
         const arrangement = getArrangement(rawItems, current, id);
 
         if (!arrangement) return current;
+        if (arrangement.position.x === x && arrangement.position.y === y) return current;
 
         return {
           ...current,

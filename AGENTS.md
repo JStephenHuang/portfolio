@@ -21,6 +21,7 @@ resets git history with a fresh initial commit, and removes the `scripts/` direc
 
 - Use arrow functions with `:React.FC<Props>` or `React.ComponentProps<Type>` or `React.ComponentPropsWithRef<Type>`.
 - Use functional error handling methods under `error.ts`.
+- Use Motion for interface animations when possible; reserve CSS transitions for cases Motion cannot reasonably control.
 - Don't add comments
 - Don't run lint and tests after every change but ONLY when specified by the user
 

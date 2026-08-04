@@ -11,12 +11,13 @@ import styles from "./styles.module.scss";
 export const PortfolioBoard: React.FC = () => {
   const { bounce, friction, layout } = useSettings();
   const { arrangedItems, isLoading, savePosition, bringForward } = useArrangedItems(rootItems, "root-items");
-
+  const isLocked = layout === "lock";
   return (
     <main className={styles.page}>
       <AirHockey.Root
-        className={`${styles.board} ${layout === "lock" ? styles.fixed : ""}`}
+        className={`${styles.board} ${isLocked ? styles.fixed : ""}`}
         physics={{ bounce, friction }}
+        off={isLocked}
       >
         {!isLoading &&
           arrangedItems.map((item) => (

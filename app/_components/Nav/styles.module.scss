@@ -44,17 +44,42 @@
   font: inherit;
   line-height: inherit;
   color: inherit;
-
   border: 0;
   background-color: transparent;
+
   cursor: pointer;
   pointer-events: auto;
+
+  &Open {
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+.settingsToggle {
+  @extend .toggle;
+
+  display: inline-flex;
 }
 
 .settings {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+.settingsControls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.settingsDisclosure {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.settingsOpen .settingsDisclosure {
+  pointer-events: auto;
 }
 
 @media (max-width: 768px) {

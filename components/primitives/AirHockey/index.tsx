@@ -107,7 +107,7 @@ const Item: React.FC<ItemProps> = ({
 
   useEffect(() => {
     if (off) settle();
-  }, [off, settle]);
+  }, [off]);
 
   useAnimationFrame((_, delta) => {
     const bounds = boundsRef.current;

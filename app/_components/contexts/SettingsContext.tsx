@@ -8,6 +8,7 @@ const settingsSchema = z.object({
   bounce: z.number().min(0).max(1),
   friction: z.number().min(0).max(1),
   layout: z.enum(["lock", "free"]),
+  isSettingsOpen: z.boolean(),
 });
 
 type Settings = z.infer<typeof settingsSchema>;
@@ -15,6 +16,7 @@ export type Layout = Settings["layout"];
 
 type SettingsContextValue = Settings & {
   isLoading: boolean;
+  setIsSettingsOpen: (value: boolean) => void;
   setBounce: (value: number) => void;
   setFriction: (value: number) => void;
   setLayout: (value: Layout) => void;
@@ -24,6 +26,7 @@ const DEFAULT_SETTINGS: Settings = {
   bounce: 0.5,
   friction: 0.5,
   layout: "lock",
+  isSettingsOpen: false,
 };
 
 export const SettingsContext = createContext<SettingsContextValue | null>(null);
@@ -34,6 +37,16 @@ export const SettingsProvider: React.FC<React.PropsWithChildren> = ({ children }
     key: "settings",
     defaultValue: DEFAULT_SETTINGS,
   });
+
+  const setIsSettingsOpen = useCallback(
+    (open: boolean) => {
+      setStoredSettings((current) => ({
+        ...current,
+        isSettingsOpen: open,
+      }));
+    },
+    [setStoredSettings]
+  );
 
   const setBounce = useCallback(
     (bounce: number) => {
@@ -65,12 +78,14 @@ export const SettingsProvider: React.FC<React.PropsWithChildren> = ({ children }
       bounce: storedSettings.bounce,
       friction: storedSettings.friction,
       layout: storedSettings.layout,
+      isSettingsOpen: storedSettings.isSettingsOpen,
       isLoading: !mounted,
+      setIsSettingsOpen,
       setBounce,
       setFriction,
       setLayout,
     }),
-    [mounted, setBounce, setFriction, setLayout, storedSettings]
+    [mounted, setBounce, setFriction, setIsSettingsOpen, setLayout, storedSettings]
   );
 
   return <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>;

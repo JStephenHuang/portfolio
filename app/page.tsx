@@ -1,7 +1,7 @@
-import { PortfolioBoard } from "./_components/PortfolioBoard";
+import PortfolioGallery from "./_components/PortfolioGallery";
 
-const Home: React.FC = () => {
-  return <PortfolioBoard />;
+const Root: React.FC = () => {
+  return <PortfolioGallery />;
 };
 
-export default Home;
+export default Root;

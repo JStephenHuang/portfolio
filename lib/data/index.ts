@@ -37,7 +37,7 @@ const worldCup2026: Item = {
 
 const yap: Item = {
   id: "yap",
-  title: "Youtube Automation Pipeline",
+  title: "youtube automation pipeline",
   image: "/cake.gif",
   defaultPosition: {
     x: 0.2,

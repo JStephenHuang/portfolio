@@ -1,14 +1,14 @@
 "use client";
 
 import * as AirHockey from "@/components/primitives/AirHockey";
-import { Image } from "@/components/ui";
 import { rootItems } from "@/lib/data";
 import { useArrangedItems } from "@/lib/hooks";
 
-import { useSettings } from "../contexts/SettingsContext";
+import { useSettings } from "./contexts/SettingsContext";
 import styles from "./styles.module.scss";
+import PortfolioCard from "./PortfolioCard";
 
-export const PortfolioBoard: React.FC = () => {
+const PortfolioGallery: React.FC = () => {
   const { bounce, friction, layout } = useSettings();
   const { arrangedItems, isLoading, savePosition, bringForward } = useArrangedItems(rootItems, "root-items");
   const isLocked = layout === "lock";
@@ -32,12 +32,12 @@ export const PortfolioBoard: React.FC = () => {
               }}
               onSettle={({ x, y }) => savePosition(item.id, x, y)}
             >
-              <div>
-                <Image src={item.image} draggable={false} />
-              </div>
+              <PortfolioCard item={item} />
             </AirHockey.Item>
           ))}
       </AirHockey.Root>
     </main>
   );
 };
+
+export default PortfolioGallery;

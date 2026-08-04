@@ -1,0 +1,89 @@
+.page,
+.board {
+  width: 100%;
+  min-height: 100svh;
+}
+
+.page {
+  overflow: hidden;
+  background: var(--color-portfolio-bg);
+}
+
+.board {
+  height: 100svh;
+}
+
+.item {
+  width: 150px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.fixed .item {
+  cursor: default;
+  touch-action: auto;
+}
+
+.card {
+  width: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+}
+
+.viewBtn {
+  --offset: var(--spacing-room);
+
+  position: absolute;
+  right: var(--offset);
+  top: var(--offset);
+
+  padding: var(--spacing-room) var(--spacing-house);
+
+  color: var(--color-white);
+
+  line-height: var(--line-height-tight);
+  pointer-events: auto;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.title {
+  position: absolute;
+  margin-top: var(--spacing-room);
+
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .board {
+    padding: 88px var(--spacing-md) 96px;
+  }
+
+  .item {
+    width: 100px;
+  }
+
+  .view {
+    --offset: var(--spacing-dot);
+
+    right: var(--offset);
+    bottom: var(--offset);
+  }
+
+  .title {
+    margin-top: var(--spacing-dot);
+  }
+}

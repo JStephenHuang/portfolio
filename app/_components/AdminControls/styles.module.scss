@@ -1,0 +1,2 @@
+.control { position: fixed; right: var(--spacing-country); bottom: calc(var(--spacing-country) + 40px); z-index: var(--z-index-toast); display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--color-border-secondary); border-radius: 50%; background: var(--color-bg-primary); box-shadow: var(--box-shadow); }
+@media (max-width: 768px) { .control { right: var(--spacing-city); } }

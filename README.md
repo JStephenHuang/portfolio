@@ -28,3 +28,21 @@ This renames the project, resets git history, and removes the setup script. Then
 pnpm install
 pnpm dev
 ```
+
+## Dump CMS
+
+The password-protected editor at `/admin` stores drafts in the browser and publishes content to a GitHub pull request targeting `stephen/rebuild-3`. Configure these server-only environment variables:
+
+```bash
+AUTH_SECRET="a-long-random-secret"
+ADMIN_PASSWORD_HASH="$argon2id$..."
+GITHUB_CONTENT_TOKEN="github_pat_..."
+```
+
+Generate the password hash locally without committing the password or output to the repository:
+
+```bash
+node -e 'require("argon2").hash(process.argv[1], {type: require("argon2").argon2id}).then(console.log)' 'your password'
+```
+
+Create a fine-grained GitHub personal access token scoped only to `JStephenHuang/portfolio`, with read/write access to Contents and Pull Requests. Deployment-level rate limiting is recommended in addition to the editor's bounded process-local login throttle, particularly on multi-instance hosting.

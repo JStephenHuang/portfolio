@@ -1,8 +1,9 @@
 "use client";
 
-import { Provider, ProviderProps, useAirHockeyContext } from "./Context";
 import { motion, type PanInfo, useAnimationFrame, useMotionValue } from "motion/react";
 import React, { useCallback, useEffect, useRef } from "react";
+
+import { Provider, ProviderProps, useAirHockeyContext } from "./Context";
 import { Bounds, getBounds, resolveCollision, Vector } from "./physics";
 
 interface RootProps extends React.ComponentProps<"div">, Omit<ProviderProps, "rinkRef"> {}

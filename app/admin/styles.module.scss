@@ -1,0 +1,5 @@
+.page { min-height: 100svh; display: grid; place-items: center; padding: var(--spacing-country); }
+.page section { width: min(380px, 100%); display: grid; gap: var(--spacing-city); }
+.form { display: grid; gap: var(--spacing-street); }
+.form input { padding: var(--spacing-street); border: 1px solid var(--color-border-secondary); border-radius: var(--border-radius-xs); color: inherit; background: var(--color-bg-primary); }
+.form button { padding: var(--spacing-street); border: 0; border-radius: var(--border-radius-xs); color: var(--color-text-inverse); background: var(--color-accent); cursor: pointer; }

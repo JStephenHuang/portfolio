@@ -1,107 +1,47 @@
 import { z } from "zod";
 
+export const dumpIdSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use a kebab-case slug");
+
 export const positionSchema = z.object({
-  x: z.number(),
-  y: z.number(),
+  x: z.number().min(0).max(1),
+  y: z.number().min(0).max(1),
 });
 
+const webUrlSchema = z.url().refine((value) => ["http:", "https:"].includes(new URL(value).protocol), "Use an HTTP URL");
+
+export const imageSchema = z.string().refine((value) => {
+  if (value.startsWith("/")) return !value.startsWith("//");
+  try {
+    return ["http:", "https:"].includes(new URL(value).protocol);
+  } catch {
+    return false;
+  }
+}, "Use a root-relative path or HTTP URL");
+
 export const generalLinkSchema = z.object({
-  label: z.string().optional(),
-  href: z.url(),
+  label: z.string().trim().max(80).optional(),
+  href: webUrlSchema,
 });
 
 export const itemLinksSchema = z.object({
-  youtube: z.url().optional(),
-  github: z.url().optional(),
-  general: z.array(generalLinkSchema).optional(),
+  youtube: webUrlSchema.optional(),
+  github: webUrlSchema.optional(),
+  general: z.array(generalLinkSchema).max(10).default([]),
 });
 
 export const itemSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  description: z.string(),
-  image: z.string(),
-  width: z.number().positive(),
+  id: dumpIdSchema,
+  title: z.string().trim().min(1).max(160),
+  description: z.string().trim().min(1).max(500),
+  image: imageSchema,
+  width: z.number().min(80).max(1200),
   defaultPosition: positionSchema,
-  links: itemLinksSchema,
+  links: itemLinksSchema.default({ general: [] }),
 });
+
+export const editableMetadataSchema = itemSchema.omit({ id: true });
 
 export type Position = z.infer<typeof positionSchema>;
 export type Item = z.infer<typeof itemSchema>;
-
-const aoc: Item = {
-  id: "aoc",
-  title: "advent of code",
-  description: "my humble solutions to Advent of Code problems.",
-  image: "/aoc/logo.png",
-  width: 150,
-  defaultPosition: {
-    x: 0.23,
-    y: 0.23,
-  },
-  links: {
-    github: "https://github.com/JStephenHuang/AoC",
-    general: [{ label: "Advent of Code", href: "https://adventofcode.com/" }],
-  },
-};
-
-const worldCup2026: Item = {
-  id: "world-cup-2026",
-  title: "using random forests to predict the world cup",
-  description: "An exploration of using random forest models to predict the results of the 2026 World Cup.",
-  image: "/rf.avif",
-  width: 500,
-  defaultPosition: {
-    x: 0.2,
-    y: 0.3,
-  },
-  links: {
-    github: "https://github.com/JStephenHuang/world-cup-2026",
-  },
-};
-
-const yap: Item = {
-  id: "yap",
-  title: "youtube automation pipeline",
-  description: "A pipeline for automating the repetitive parts of producing and publishing YouTube videos.",
-  image: "/cake.gif",
-  width: 150,
-  defaultPosition: {
-    x: 0.2,
-    y: 0.3,
-  },
-  links: {
-    github: "https://github.com/JStephenHuang/yap",
-  },
-};
-
-const craftingInterpreters: Item = {
-  id: "crafting-interpreters",
-  title: "building an interpreter",
-  description: "An interpreter built while exploring language design, parsing, and runtime implementation.",
-  image: "/lox.jpg",
-  width: 150,
-  defaultPosition: {
-    x: 0.2,
-    y: 0.3,
-  },
-  links: {
-    github: "https://github.com/JStephenHuang/language-translators/tree/main/lox",
-    general: [{ label: "Crafting Interpreters", href: "https://craftinginterpreters.com/" }],
-  },
-};
-
-const myDumps: Item = {
-  id: "my-dumps",
-  title: "my dumps (thoughts)",
-  description: "what I comptemplate about sometimes.",
-  image: "/experience.gif",
-  width: 150,
-  defaultPosition: {
-    x: 0.8,
-    y: 0.1,
-  },
-  links: {},
-};
-
-export const rootItems: Item[] = [aoc, worldCup2026, yap, craftingInterpreters, myDumps];
+export type EditableMetadata = z.infer<typeof editableMetadataSchema>;
+export type Dump = { metadata: Item; markdown: string; sha?: string; branch?: string; prNumber?: number; prUrl?: string };

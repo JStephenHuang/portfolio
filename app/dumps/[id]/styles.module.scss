@@ -11,6 +11,11 @@
   gap: var(--spacing-country);
 }
 
+.body {
+  width: min(760px, 100%);
+  margin: var(--spacing-universe) auto 0;
+}
+
 .imageWrapper {
   overflow: hidden;
 }

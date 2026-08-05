@@ -1,0 +1,12 @@
+{
+  "id": "aoc",
+  "title": "advent of code",
+  "description": "my humble solutions to Advent of Code problems.",
+  "image": "/aoc/logo.png",
+  "width": 150,
+  "defaultPosition": { "x": 0.23, "y": 0.23 },
+  "links": {
+    "github": "https://github.com/JStephenHuang/AoC",
+    "general": [{ "label": "Advent of Code", "href": "https://adventofcode.com/" }]
+  }
+}

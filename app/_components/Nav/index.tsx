@@ -4,12 +4,13 @@ import { useMounted } from "@mantine/hooks";
 import { EnvelopeClosedIcon, GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import classNames from "classnames";
 import { motion } from "motion/react";
+import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 
 import { Button, Link } from "@/components/ui";
 
-import { useSettings } from "../contexts/SettingsContext";
 import styles from "./styles.module.scss";
+import { useSettings } from "../contexts/SettingsContext";
 
 const getNextPhysicsValue = (value: number, direction: 1 | -1 = 1) => {
   return ((Math.round(value * 10) + direction + 11) % 11) / 10;
@@ -67,6 +68,7 @@ const LayoutToggle: React.FC = () => {
 };
 
 const Nav: React.FC = () => {
+  const { status } = useSession();
   const { isLoading, isSettingsOpen, friction, bounce, layout, setIsSettingsOpen, setBounce, setFriction } =
     useSettings();
   const isLocked = layout === "lock";
@@ -95,6 +97,7 @@ const Nav: React.FC = () => {
                 <PhysicsToggle label="bounce" value={bounce} onChange={setBounce} />
               </>
             )}
+            {status === "authenticated" && <Button.Link onClick={() => signOut({ callbackUrl: "/" })}>logout</Button.Link>}
           </motion.div>
         </div>
       </nav>

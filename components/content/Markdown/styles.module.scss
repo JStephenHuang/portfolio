@@ -1,0 +1,23 @@
+.content { font-size: var(--font-size-fluid-lg); line-height: var(--line-height-relaxed); overflow-wrap: anywhere; }
+.content > :first-child { margin-top: 0; }
+.content > :last-child { margin-bottom: 0; }
+.content h1, .content h2, .content h3, .content h4 { margin: 2em 0 .65em; line-height: var(--line-height-tight); }
+.content h1 { font-size: 2rem; }
+.content h2 { font-size: 1.55rem; }
+.content h3 { font-size: 1.25rem; }
+.content p, .content ul, .content ol, .content blockquote, .content table, .content pre { margin: 1em 0; }
+.content ul, .content ol { padding-left: 1.6em; }
+.content li + li { margin-top: .3em; }
+.content blockquote { padding-left: var(--spacing-city); border-left: 3px solid var(--color-border-secondary); color: var(--color-text-secondary); }
+.content a { text-decoration: underline; text-underline-offset: 3px; }
+.content img { max-width: 100%; height: auto; border-radius: var(--border-radius-xs); }
+.content table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }
+.content th, .content td { padding: var(--spacing-house) var(--spacing-street); border: 1px solid var(--color-border-secondary); }
+.content :not(pre) > code { padding: 2px 5px; border-radius: 4px; background: var(--color-bg-secondary); font-family: ui-monospace, monospace; }
+.content pre { overflow-x: auto; border: 1px solid var(--color-border-secondary); border-radius: var(--border-radius-xs); }
+.content pre code { display: block; padding: var(--spacing-city); }
+.codeBlock { display: contents; }
+.codeBlock :global(.shiki) { margin: 0; padding: var(--spacing-city); background: var(--shiki-light-bg) !important; }
+.codeBlock :global(.shiki span) { color: var(--shiki-light) !important; }
+:global(.dark) .codeBlock :global(.shiki) { background: var(--shiki-dark-bg) !important; }
+:global(.dark) .codeBlock :global(.shiki span) { color: var(--shiki-dark) !important; }

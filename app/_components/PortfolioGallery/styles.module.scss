@@ -1,0 +1,36 @@
+.page,
+.board {
+  width: 100%;
+  min-height: 100svh;
+}
+
+.page {
+  overflow-x: hidden;
+  background: var(--color-portfolio-bg);
+}
+
+.board {
+  height: 200svh;
+}
+
+.item {
+  width: min(var(--item-width), calc(100vw - var(--spacing-city) - var(--spacing-city)));
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.fixed .item {
+  cursor: default;
+  touch-action: auto;
+}
+
+@media (max-width: 768px) {
+  .board {
+    padding: 88px var(--spacing-md) 96px;
+  }
+}

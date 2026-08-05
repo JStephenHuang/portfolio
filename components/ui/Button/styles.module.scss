@@ -10,8 +10,6 @@
   border-radius: var(--border-radius-sm);
 
   font: inherit;
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-tight);
 
   cursor: pointer;
 
@@ -93,9 +91,18 @@
   padding: 0;
   border: none;
   background: none;
-  color: var(--color-accent);
+  color: var(--color-text-primary);
 
   &:hover:not(:disabled) {
-    text-decoration: underline;
+    color: var(--color-accent);
   }
+
+  &:disabled {
+    color: var(--color-text-disabled);
+    text-decoration: line-through;
+  }
+}
+
+.toggle--active {
+  font-weight: var(--font-weight-bold);
 }

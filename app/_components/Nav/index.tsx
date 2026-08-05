@@ -4,9 +4,9 @@ import { useMounted } from "@mantine/hooks";
 import { EnvelopeClosedIcon, GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import classNames from "classnames";
 import { motion } from "motion/react";
-import Link from "next/link";
 import { useTheme } from "next-themes";
-import { useState } from "react";
+
+import { Button, Link } from "@/components/ui";
 
 import { useSettings } from "../contexts/SettingsContext";
 import styles from "./styles.module.scss";
@@ -23,9 +23,8 @@ type PhysicsToggleProps = {
 
 const PhysicsToggle: React.FC<PhysicsToggleProps> = ({ label, value, onChange }) => {
   return (
-    <button
-      type="button"
-      className={styles.toggle}
+    <Button.Link
+      className={styles.settingsControl}
       onClick={() => onChange(getNextPhysicsValue(value))}
       onWheel={(event) => {
         event.preventDefault();
@@ -33,20 +32,28 @@ const PhysicsToggle: React.FC<PhysicsToggleProps> = ({ label, value, onChange })
       }}
     >
       {label} {value.toFixed(1)}
-    </button>
+    </Button.Link>
   );
 };
 
 const ThemeToggle: React.FC = () => {
   const mounted = useMounted();
   const { resolvedTheme, setTheme } = useTheme();
+
   if (!mounted) return <span>loading...</span>;
+
   const isDark = resolvedTheme === "dark";
 
   return (
-    <button type="button" className={styles.toggle} onClick={() => setTheme(isDark ? "light" : "dark")}>
-      {mounted && (isDark ? "light" : "dark")}
-    </button>
+    // <div className={styles.toggles}>
+    //   <Button.Toggle active={!isDark} onClick={() => setTheme("light")}>
+    //     light
+    //   </Button.Toggle>
+    //   <Button.Toggle active={isDark} onClick={() => setTheme("dark")}>
+    //     dark
+    //   </Button.Toggle>
+    // </div>
+    <Button.Link onClick={() => setTheme(isDark ? "light" : "dark")}>{isDark ? "light" : "dark"}</Button.Link>
   );
 };
 
@@ -56,11 +63,7 @@ const LayoutToggle: React.FC = () => {
 
   if (isLoading) return <span>loading...</span>;
 
-  return (
-    <button type="button" className={styles.toggle} onClick={() => setLayout(isLocked ? "free" : "lock")}>
-      {isLocked ? "free" : "lock"}
-    </button>
-  );
+  return <Button.Link onClick={() => setLayout(isLocked ? "free" : "lock")}>{isLocked ? "free" : "lock"}</Button.Link>;
 };
 
 const Nav: React.FC = () => {
@@ -74,30 +77,24 @@ const Nav: React.FC = () => {
         <Link className={styles.link} href={"/"}>
           jsh
         </Link>
-        <div className={classNames(styles.settings, isSettingsOpen && styles.settingsOpen)}>
-          <button
-            type="button"
-            className={classNames(styles.settingsToggle, isSettingsOpen && styles.toggleOpen)}
-            onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-          >
+        <div className={classNames(styles.settings)}>
+          <Button.Toggle active={isSettingsOpen} onClick={() => setIsSettingsOpen(!isSettingsOpen)}>
             settings
-          </button>
+          </Button.Toggle>
           <motion.div
-            className={styles.settingsDisclosure}
+            className={classNames(styles.settingsContent)}
             initial={false}
             animate={isSettingsOpen ? { height: "auto", opacity: 1, y: 0 } : { height: 0, opacity: 0, y: -4 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
           >
-            <div className={styles.settingsControls}>
-              <ThemeToggle />
-              <LayoutToggle />
-              {!isLoading && !isLocked && (
-                <>
-                  <PhysicsToggle label="friction" value={friction} onChange={setFriction} />
-                  <PhysicsToggle label="bounce" value={bounce} onChange={setBounce} />
-                </>
-              )}
-            </div>
+            <ThemeToggle />
+            <LayoutToggle />
+            {!isLoading && !isLocked && (
+              <>
+                <PhysicsToggle label="friction" value={friction} onChange={setFriction} />
+                <PhysicsToggle label="bounce" value={bounce} onChange={setBounce} />
+              </>
+            )}
           </motion.div>
         </div>
       </nav>

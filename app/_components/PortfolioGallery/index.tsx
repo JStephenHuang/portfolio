@@ -1,12 +1,14 @@
 "use client";
 
+import type React from "react";
+
 import * as AirHockey from "@/components/primitives/AirHockey";
 import { rootItems } from "@/lib/data";
 import { useArrangedItems } from "@/lib/hooks";
 
-import { useSettings } from "./contexts/SettingsContext";
+import { useSettings } from "../contexts/SettingsContext";
+import PortfolioCard from "../PortfolioCard";
 import styles from "./styles.module.scss";
-import PortfolioCard from "./PortfolioCard";
 
 const PortfolioGallery: React.FC = () => {
   const { bounce, friction, layout } = useSettings();
@@ -26,7 +28,12 @@ const PortfolioGallery: React.FC = () => {
               className={styles.item}
               initialX={item.position.x}
               initialY={item.position.y}
-              style={{ zIndex: item.zIndex }}
+              style={
+                {
+                  zIndex: item.zIndex,
+                  "--item-width": `${item.width}px`,
+                } as React.CSSProperties
+              }
               onPointerDown={() => {
                 bringForward(item.id);
               }}

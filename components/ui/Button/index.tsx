@@ -9,6 +9,10 @@ interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
   align?: "left" | "center" | "right";
 }
 
+interface ToggleButtonProps extends ButtonProps {
+  active: boolean;
+}
+
 const ButtonBase = ({
   children,
   type = "button",
@@ -59,4 +63,15 @@ const LinkButton = ({ children, className, align = "left", ...props }: ButtonPro
   </ButtonBase>
 );
 
-export { PrimaryButton as Primary, SecondaryButton as Secondary, LinkButton as Link };
+const ToggleButton: React.FC<ToggleButtonProps> = ({ children, active, className, align = "left", ...props }) => (
+  <ButtonBase
+    {...props}
+    align={align}
+    aria-pressed={active}
+    className={classNames(styles.link, active && styles["toggle--active"], className)}
+  >
+    {children}
+  </ButtonBase>
+);
+
+export { PrimaryButton as Primary, SecondaryButton as Secondary, LinkButton as Link, ToggleButton as Toggle };

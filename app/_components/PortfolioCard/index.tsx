@@ -1,11 +1,12 @@
 "use client";
 
+import { motion } from "motion/react";
+import Link from "next/link";
+
 import { Image } from "@/components/ui";
 import { Item } from "@/lib/data";
-import { motion } from "motion/react";
 
 import styles from "./styles.module.scss";
-import Link from "next/link";
 
 interface PortfolioCardProps {
   item: Item;
@@ -16,7 +17,7 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ item }) => {
     <motion.div className={styles.card} initial="rest" whileHover="hover">
       <div className={styles.imageWrapper}>
         <Image className={styles.image} src={item.image} alt={item.title} draggable={false} />
-        <Link href={`/pb/${item.id}`}>
+        <Link href={`/dumps/${item.id}`}>
           <motion.span
             className={styles.viewBtn}
             variants={{

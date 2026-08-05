@@ -91,4 +91,17 @@ const craftingInterpreters: Item = {
   },
 };
 
-export const rootItems: Item[] = [aoc, worldCup2026, yap, craftingInterpreters];
+const myDumps: Item = {
+  id: "my-dumps",
+  title: "my dumps (thoughts)",
+  description: "what I comptemplate about sometimes.",
+  image: "/experience.gif",
+  width: 150,
+  defaultPosition: {
+    x: 0.8,
+    y: 0.1,
+  },
+  links: {},
+};
+
+export const rootItems: Item[] = [aoc, worldCup2026, yap, craftingInterpreters, myDumps];

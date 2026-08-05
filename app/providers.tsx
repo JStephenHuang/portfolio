@@ -1,5 +1,3 @@
-"use client";
-
 import { ThemeProvider } from "next-themes";
 
 import { SettingsProvider } from "./_components/contexts/SettingsContext";

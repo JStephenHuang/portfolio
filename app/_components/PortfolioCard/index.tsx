@@ -10,11 +10,21 @@ import styles from "./styles.module.scss";
 
 interface PortfolioCardProps {
   item: Item;
+  active: boolean;
+  onActivate: () => void;
 }
 
-const PortfolioCard: React.FC<PortfolioCardProps> = ({ item }) => {
+const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, active, onActivate }) => {
   return (
-    <motion.div className={styles.card} initial="rest" whileHover="hover">
+    <motion.div
+      className={styles.card}
+      initial="rest"
+      whileHover="hover"
+      animate={active ? "hover" : "rest"}
+      onTap={(event) => {
+        if ("pointerType" in event && event.pointerType !== "mouse") onActivate();
+      }}
+    >
       <div className={styles.imageWrapper}>
         <Image className={styles.image} src={item.image} alt={item.title} draggable={false} />
         <Link href={`/dumps/${item.id}`}>

@@ -37,10 +37,11 @@
 }
 
 @media (max-width: 768px) {
-  .view {
+  .viewBtn {
     --offset: var(--spacing-dot);
 
     right: var(--offset);
+    top: auto;
     bottom: var(--offset);
   }
 

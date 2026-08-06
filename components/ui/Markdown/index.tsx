@@ -19,7 +19,7 @@ interface MarkdownProps {
 }
 
 const MarkdownImage: React.FC<MarkdownImageProps> = ({ alt = "", node: _node, src, title }) => {
-  if (!src) return null;
+  if (typeof src !== "string" || !src) return null;
 
   return (
     <span className={styles.figure}>
@@ -40,12 +40,7 @@ const MarkdownLink: React.FC<MarkdownLinkProps> = ({ children, href = "", node: 
   const external = href.startsWith("http://") || href.startsWith("https://");
 
   return (
-    <Link
-      {...props}
-      href={href}
-      target={external ? "_blank" : props.target}
-      rel={external ? "noreferrer" : props.rel}
-    >
+    <Link {...props} href={href} target={external ? "_blank" : props.target} rel={external ? "noreferrer" : props.rel}>
       {children}
     </Link>
   );

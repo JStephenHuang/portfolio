@@ -13,11 +13,6 @@ const credentialsSchema = z.object({
   password: z.string().min(1).max(512),
 });
 
-const wait = (milliseconds: number): Promise<void> =>
-  new Promise((resolve) => {
-    setTimeout(resolve, milliseconds);
-  });
-
 export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
   session: {
@@ -25,7 +20,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     maxAge: 24 * 60 * 60,
   },
   pages: {
-    signIn: "/admin",
+    signIn: "/login",
   },
   providers: [
     Credentials({
@@ -67,7 +62,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         return {
           id: "admin",
-          name: "Admin",
+          name: "jsh",
         };
       },
     }),

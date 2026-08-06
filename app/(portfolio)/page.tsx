@@ -1,4 +1,4 @@
-import PortfolioGallery from "./_components/PortfolioGallery";
+import PortfolioGallery from "@/app/_components/PortfolioGallery";
 
 const Root: React.FC = () => {
   return <PortfolioGallery />;

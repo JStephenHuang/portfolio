@@ -1,6 +1,7 @@
 "use client";
 
 import type React from "react";
+import { useState } from "react";
 
 import * as AirHockey from "@/components/primitives/AirHockey";
 import { rootItems } from "@/lib/data";
@@ -13,13 +14,18 @@ import styles from "./styles.module.scss";
 const PortfolioGallery: React.FC = () => {
   const { bounce, friction, layout } = useSettings();
   const { arrangedItems, isLoading, savePosition, bringForward } = useArrangedItems(rootItems, "root-items");
+  const [activeItemId, setActiveItemId] = useState<string | null>(null);
   const isLocked = layout === "lock";
+
   return (
     <main className={styles.page}>
       <AirHockey.Root
         className={`${styles.board} ${isLocked ? styles.fixed : ""}`}
         physics={{ bounce, friction }}
         off={isLocked}
+        onPointerDown={(event) => {
+          if (event.target === event.currentTarget) setActiveItemId(null);
+        }}
       >
         {!isLoading &&
           arrangedItems.map((item) => (
@@ -39,7 +45,11 @@ const PortfolioGallery: React.FC = () => {
               }}
               onSettle={({ x, y }) => savePosition(item.id, x, y)}
             >
-              <PortfolioCard item={item} />
+              <PortfolioCard
+                item={item}
+                active={activeItemId === item.id}
+                onActivate={() => setActiveItemId(item.id)}
+              />
             </AirHockey.Item>
           ))}
       </AirHockey.Root>

@@ -26,6 +26,10 @@
   pointer-events: auto;
   cursor: pointer;
   background: rgba(0, 0, 0, 0.6);
+
+  &:hover {
+    color: var(--color-accent);
+  }
 }
 
 .title {
@@ -41,8 +45,7 @@
     --offset: var(--spacing-dot);
 
     right: var(--offset);
-    top: auto;
-    bottom: var(--offset);
+    top: var(--offset);
   }
 
   .title {

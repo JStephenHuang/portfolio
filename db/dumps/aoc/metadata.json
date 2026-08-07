@@ -1,0 +1,34 @@
+{
+  "id": "aoc",
+  "title": "advent of code",
+  "description": "my humble solutions to Advent of Code problems.",
+  "image": "/aoc/logo.png",
+  "width": 150,
+  "defaultPosition": {
+    "x": 0.23,
+    "y": 0.23
+  },
+  "links": {
+    "github": "https://github.com/JStephenHuang/AoC",
+    "general": [
+      {
+        "label": "Advent of Code",
+        "href": "https://adventofcode.com/"
+      }
+    ]
+  },
+  "body": {
+    "2025/12/01": [{ "type": "markdown", "src": "day1.md" }],
+    "2025/12/02": [{ "type": "markdown", "src": "day2.md" }],
+    "2025/12/03": [{ "type": "markdown", "src": "day3.md" }],
+    "2025/12/04": [{ "type": "markdown", "src": "day4.md" }],
+    "2025/12/05": [{ "type": "markdown", "src": "day5.md" }],
+    "2025/12/06": [{ "type": "markdown", "src": "day6.md" }],
+    "2025/12/07": [{ "type": "markdown", "src": "day7.md" }],
+    "2025/12/08": [{ "type": "markdown", "src": "day8.md" }],
+    "2025/12/09": [{ "type": "markdown", "src": "day9.md" }],
+    "2025/12/10": [{ "type": "markdown", "src": "day10.md" }],
+    "2025/12/11": [{ "type": "markdown", "src": "day11.md" }],
+    "2025/12/12": [{ "type": "markdown", "src": "day12.md" }]
+  }
+}

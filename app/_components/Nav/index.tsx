@@ -1,14 +1,15 @@
 "use client";
 
-import { useMounted } from "@mantine/hooks";
 import { EnvelopeClosedIcon, GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import classNames from "classnames";
-import { motion } from "motion/react";
-import { useTheme } from "next-themes";
-
+import { AnimatePresence, motion } from "motion/react";
 import { Button, Link } from "@/components/ui";
 
+import { useMounted } from "@mantine/hooks";
+import { useTheme } from "next-themes";
+import { useEffect, useRef } from "react";
 import { useSettings } from "../contexts/SettingsContext";
+
+import classNames from "classnames";
 import styles from "./styles.module.scss";
 
 const getNextPhysicsValue = (value: number, direction: 1 | -1 = 1) => {
@@ -22,14 +23,28 @@ type PhysicsToggleProps = {
 };
 
 const PhysicsToggle: React.FC<PhysicsToggleProps> = ({ label, value, onChange }) => {
+  const controlRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const control = controlRef.current;
+
+    if (!control) return;
+
+    const handleWheel = (event: WheelEvent) => {
+      event.preventDefault();
+      onChange(getNextPhysicsValue(value, event.deltaY < 0 ? 1 : -1));
+    };
+
+    control.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => control.removeEventListener("wheel", handleWheel);
+  }, [onChange, value]);
+
   return (
     <Button.Link
+      ref={controlRef}
       className={styles.settingsControl}
       onClick={() => onChange(getNextPhysicsValue(value))}
-      onWheel={(event) => {
-        event.preventDefault();
-        onChange(getNextPhysicsValue(value, event.deltaY < 0 ? 1 : -1));
-      }}
     >
       {label} {value.toFixed(1)}
     </Button.Link>
@@ -81,21 +96,26 @@ const Nav: React.FC = () => {
           <Button.Toggle active={isSettingsOpen} onClick={() => setIsSettingsOpen(!isSettingsOpen)}>
             settings
           </Button.Toggle>
-          <motion.div
-            className={classNames(styles.settingsContent)}
-            initial={false}
-            animate={isSettingsOpen ? { height: "auto", opacity: 1, y: 0 } : { height: 0, opacity: 0, y: -4 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-          >
-            <ThemeToggle />
-            <LayoutToggle />
-            {!isLoading && !isLocked && (
-              <>
-                <PhysicsToggle label="friction" value={friction} onChange={setFriction} />
-                <PhysicsToggle label="bounce" value={bounce} onChange={setBounce} />
-              </>
+          <AnimatePresence initial={false}>
+            {isSettingsOpen && (
+              <motion.div
+                className={classNames(styles.settingsContent)}
+                initial={{ height: 0, opacity: 0, y: -4 }}
+                animate={{ height: "auto", opacity: 1, y: 0 }}
+                exit={{ height: 0, opacity: 0, y: -4, pointerEvents: "none" }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+              >
+                <ThemeToggle />
+                <LayoutToggle />
+                {!isLoading && !isLocked && (
+                  <>
+                    <PhysicsToggle label="friction" value={friction} onChange={setFriction} />
+                    <PhysicsToggle label="bounce" value={bounce} onChange={setBounce} />
+                  </>
+                )}
+              </motion.div>
             )}
-          </motion.div>
+          </AnimatePresence>
         </div>
       </nav>
       <nav className={styles.botNav}>

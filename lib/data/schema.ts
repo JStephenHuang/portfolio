@@ -1,0 +1,78 @@
+import { z } from "zod";
+
+const dumpIdPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const markdownSourcePattern = /^[a-zA-Z0-9][a-zA-Z0-9/_-]*\.md$/;
+
+const isCalendarDate = (value: string): boolean => {
+  const isoDate = value.replaceAll("/", "-");
+  const parsedDate = new Date(`${isoDate}T00:00:00.000Z`);
+
+  return !Number.isNaN(parsedDate.getTime()) && parsedDate.toISOString().slice(0, 10) === isoDate;
+};
+
+export const positionSchema = z.object({
+  x: z.number(),
+  y: z.number(),
+});
+
+export const generalLinkSchema = z.object({
+  label: z.string().optional(),
+  href: z.url(),
+});
+
+export const itemLinksSchema = z.object({
+  youtube: z.url().optional(),
+  github: z.url().optional(),
+  general: z.array(generalLinkSchema).optional(),
+});
+
+export const itemSchema = z.object({
+  id: z.string().regex(dumpIdPattern),
+  title: z.string().min(1),
+  description: z.string(),
+  image: z.string().min(1),
+  width: z.number().positive(),
+  defaultPosition: positionSchema,
+  links: itemLinksSchema,
+});
+
+export const markdownBlockSchema = z.object({
+  type: z.literal("markdown"),
+  src: z.string().regex(markdownSourcePattern),
+});
+
+export const imageBlockSchema = z.object({
+  type: z.literal("image"),
+  src: z.string().min(1),
+  alt: z.string(),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+  caption: z.string().optional(),
+});
+
+export const videoBlockSchema = z.object({
+  type: z.literal("video"),
+  src: z.string().min(1),
+  title: z.string().optional(),
+  poster: z.string().min(1).optional(),
+  caption: z.string().optional(),
+});
+
+export const dumpContentBlockSchema = z.discriminatedUnion("type", [
+  markdownBlockSchema,
+  imageBlockSchema,
+  videoBlockSchema,
+]);
+
+export const dumpDateSchema = z.string().regex(/^\d{4}\/\d{2}\/\d{2}$/).refine(isCalendarDate, {
+  message: "Date must be a real calendar date in YYYY/MM/DD format.",
+});
+
+export const dumpMetadataSchema = itemSchema.extend({
+  body: z.record(dumpDateSchema, z.array(dumpContentBlockSchema).min(1)),
+});
+
+export type Position = z.infer<typeof positionSchema>;
+export type Item = z.infer<typeof itemSchema>;
+export type DumpContentBlock = z.infer<typeof dumpContentBlockSchema>;
+export type DumpMetadata = z.infer<typeof dumpMetadataSchema>;

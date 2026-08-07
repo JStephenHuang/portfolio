@@ -25,8 +25,8 @@ type SettingsContextValue = Settings & {
 const DEFAULT_SETTINGS: Settings = {
   bounce: 0.5,
   friction: 0.5,
-  layout: "lock",
-  isSettingsOpen: false,
+  layout: "free",
+  isSettingsOpen: true,
 };
 
 export const SettingsContext = createContext<SettingsContextValue | null>(null);

@@ -9,22 +9,14 @@
 }
 
 .header {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: flex-end;
   gap: var(--spacing-country);
 }
 
-.body {
-  width: 100%;
-  padding: var(--spacing-country);
-  border: var(--color-border-width) solid var(--color-border-secondary);
-  border-radius: var(--border-radius-lg);
-  background: color-mix(in srgb, var(--color-bg-secondary) 72%, var(--color-bg-primary));
-  box-shadow: 0 12px 36px color-mix(in srgb, var(--color-black) 6%, transparent);
-}
-
-.journal {
+.log {
   display: flex;
   width: 100%;
   min-width: 0;
@@ -32,33 +24,49 @@
   gap: var(--spacing-galaxy);
 }
 
-.entry {
-  width: 100%;
+.logEntry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-country);
   scroll-margin-top: 88px;
 }
 
-.entryFrame {
+.logDate {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-fluid-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.1em;
+  line-height: var(--line-height-none);
+}
+
+.logContent {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--spacing-country);
+}
+
+.markdownBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-country);
   padding: var(--spacing-country);
   border: var(--color-border-width) solid var(--color-border-secondary);
 }
 
-.entryDate {
-  display: block;
-  margin-bottom: var(--spacing-state);
-  color: var(--color-text-secondary);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: var(--font-size-fluid-sm);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.04em;
-  line-height: var(--line-height-none);
+.markdownFilename {
+  display: flex;
+  gap: var(--spacing-house);
+  align-items: center;
+  font-size: var(--font-size-fluid-base);
 }
 
-.entryViewport {
+.markdownViewport {
   position: relative;
   overflow: hidden;
 }
 
-.entryFade {
+.markdownFade {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -68,19 +76,13 @@
   background: linear-gradient(to bottom, transparent, var(--color-bg-primary) 88%);
 }
 
-.entryToggle {
-  display: inline-flex;
-  align-items: center;
+.markdownToggle {
+  width: fit-content;
   gap: var(--spacing-house);
-  margin-top: var(--spacing-street);
-  padding: var(--spacing-room) 0;
   border: 0;
   color: var(--color-text-secondary);
   font: inherit;
-  font-size: var(--font-size-fluid-sm);
-  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  background: transparent;
 
   &:hover {
     color: var(--color-accent);
@@ -93,7 +95,7 @@
   }
 }
 
-.entryToggleIcon {
+.markdownToggleIcon {
   width: 13px;
   height: 13px;
   transition: transform 160ms ease;
@@ -101,6 +103,37 @@
   &[data-expanded] {
     transform: rotate(180deg);
   }
+}
+
+.markdownContent {
+  min-width: 0;
+}
+
+.media {
+  width: 100%;
+  margin: 0;
+}
+
+.mediaImage,
+.mediaVideo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mediaImage {
+  object-fit: contain;
+}
+
+.mediaVideo {
+  background: var(--color-black);
+}
+
+.mediaCaption {
+  margin-top: var(--spacing-street);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-fluid-sm);
+  line-height: var(--line-height-relaxed);
 }
 
 .imageWrapper {
@@ -155,12 +188,11 @@
     gap: var(--spacing-state);
   }
 
-  .body {
-    padding: var(--spacing-state) var(--spacing-city);
-    border-radius: var(--border-radius-md);
+  .log {
+    gap: var(--spacing-universe);
   }
 
-  .journal {
-    gap: var(--spacing-universe);
+  .logContent {
+    gap: var(--spacing-state);
   }
 }

@@ -1,0 +1,21 @@
+{
+  "id": "crafting-interpreters",
+  "title": "building an interpreter",
+  "description": "An interpreter built while exploring language design, parsing, and runtime implementation.",
+  "image": "/lox.jpg",
+  "width": 150,
+  "defaultPosition": {
+    "x": 0.2,
+    "y": 0.3
+  },
+  "links": {
+    "github": "https://github.com/JStephenHuang/language-translators/tree/main/lox",
+    "general": [
+      {
+        "label": "Crafting Interpreters",
+        "href": "https://craftinginterpreters.com/"
+      }
+    ]
+  },
+  "body": {}
+}

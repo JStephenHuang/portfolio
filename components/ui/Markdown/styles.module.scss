@@ -61,15 +61,14 @@
   }
 
   a {
-    color: var(--color-accent-dark);
+    color: var(--color-accent);
     font-weight: var(--font-weight-medium);
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
 
     &:hover {
       color: var(--color-accent);
+      text-decoration: underline;
       text-decoration-color: currentColor;
     }
   }
@@ -168,7 +167,7 @@
   }
 
   :not(pre) > code {
-    padding: 2px 6px;
+    padding: 2px 4px;
     border: var(--color-border-width) solid var(--color-border-secondary);
     border-radius: var(--border-radius-xxs);
     color: var(--color-text-primary);

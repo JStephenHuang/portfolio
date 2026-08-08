@@ -29,6 +29,14 @@
     "2025/12/09": [{ "type": "markdown", "src": "day9.md" }],
     "2025/12/10": [{ "type": "markdown", "src": "day10.md" }],
     "2025/12/11": [{ "type": "markdown", "src": "day11.md" }],
-    "2025/12/12": [{ "type": "markdown", "src": "day12.md" }]
+    "2025/12/12": [{ "type": "markdown", "src": "day12.md" }],
+    "2025/12/13": [
+      {
+        "type": "image",
+        "src": "/aoc/calendar2025.png",
+        "alt": "My final Advent of Code calendar for 2025",
+        "caption": "My final advent calendar for 2025"
+      }
+    ]
   }
 }

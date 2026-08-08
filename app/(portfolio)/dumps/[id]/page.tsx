@@ -1,12 +1,10 @@
 import { notFound } from "next/navigation";
 
-import { Image, Markdown } from "@/components/ui";
 import { getDumpMetadata } from "@/lib/data";
 import { getDumpLogs } from "@/lib/data/dumps";
 import { isErr } from "@/lib/error";
 
-import DumpHeader from "./DumpHeader";
-import ExpandableMarkdown from "./ExpandableMarkdown";
+import { Header, ImageBlock, MarkdownBlock, VideoBlock } from "./_components";
 import styles from "./styles.module.scss";
 
 interface DumpPageProps {
@@ -25,7 +23,7 @@ const DumpPage: React.FC<DumpPageProps> = async ({ params }) => {
 
   return (
     <main className={styles.page}>
-      <DumpHeader item={metadata} />
+      <Header item={metadata} />
       {logsResult.data.length > 0 && (
         <section className={styles.log} aria-label={`${metadata.title} log`}>
           {logsResult.data.map((entry) => {
@@ -41,47 +39,14 @@ const DumpPage: React.FC<DumpPageProps> = async ({ params }) => {
                     const blockId = `${entryId}-${block.type}-${index + 1}`;
 
                     if (block.type === "markdown") {
-                      const filename = block.src.split("/").at(-1) ?? block.src;
-
-                      return (
-                        <ExpandableMarkdown filename={filename} id={blockId} key={blockId}>
-                          <Markdown className={styles.markdownContent}>{block.body}</Markdown>
-                        </ExpandableMarkdown>
-                      );
+                      return <MarkdownBlock body={block.body} id={blockId} src={block.src} key={blockId} />;
                     }
 
                     if (block.type === "image") {
-                      const external = block.src.startsWith("http://") || block.src.startsWith("https://");
-
-                      return (
-                        <figure className={styles.media} key={blockId}>
-                          <Image
-                            className={styles.mediaImage}
-                            src={block.src}
-                            alt={block.alt}
-                            width={block.width}
-                            height={block.height}
-                            sizes="(max-width: 768px) calc(100vw - 32px), 1200px"
-                            unoptimized={external}
-                          />
-                          {block.caption && <figcaption className={styles.mediaCaption}>{block.caption}</figcaption>}
-                        </figure>
-                      );
+                      return <ImageBlock block={block} id={blockId} key={blockId} />;
                     }
 
-                    return (
-                      <figure className={styles.media} key={blockId}>
-                        <video
-                          className={styles.mediaVideo}
-                          src={block.src}
-                          poster={block.poster}
-                          aria-label={block.title}
-                          controls
-                          preload="metadata"
-                        />
-                        {block.caption && <figcaption className={styles.mediaCaption}>{block.caption}</figcaption>}
-                      </figure>
-                    );
+                    return <VideoBlock block={block} id={blockId} key={blockId} />;
                   })}
                 </div>
               </section>

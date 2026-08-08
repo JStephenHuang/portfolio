@@ -2,9 +2,7 @@
   overflow: hidden;
   margin: var(--spacing-country) 0;
   border: var(--color-border-width) solid #2b3038;
-  border-radius: var(--border-radius-md);
   background: #17191d;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
 .toolbar {
@@ -20,7 +18,7 @@
 
 .language {
   overflow: hidden;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-family: var(--font-family-mono);
   font-size: var(--font-size-fluid-xs);
   text-overflow: ellipsis;
   text-transform: lowercase;
@@ -61,8 +59,8 @@
   margin: 0;
   padding: var(--spacing-city) var(--spacing-state) var(--spacing-state);
   color: #e6e8ec;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 12px;
+  font-family: var(--font-family-mono);
+  font-size: 13px;
   line-height: 1.7;
   tab-size: 2;
 
@@ -83,7 +81,6 @@
 @media (max-width: 768px) {
   .codeBlock {
     margin: var(--spacing-state) 0;
-    border-radius: var(--border-radius-sm);
   }
 
   .pre {

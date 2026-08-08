@@ -171,7 +171,7 @@
     border: var(--color-border-width) solid var(--color-border-secondary);
     border-radius: var(--border-radius-xxs);
     color: var(--color-text-primary);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-family: var(--font-family-mono);
     font-size: 0.86em;
     background: var(--color-accent-extra-light);
   }

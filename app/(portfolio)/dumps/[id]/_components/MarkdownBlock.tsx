@@ -1,21 +1,23 @@
 "use client";
 
-import { ChevronDownIcon, FileIcon } from "@radix-ui/react-icons";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
-import { Button, Label } from "@/components/ui";
+import { Button, Markdown } from "@/components/ui";
 
+import BlockWrapper from "./BlockWrapper";
+import { getBlockLabel } from "./getBlockLabel";
 import styles from "./styles.module.scss";
 
 const COLLAPSED_HEIGHT = 260;
 
-interface ExpandableMarkdownProps extends React.PropsWithChildren {
-  filename: string;
+interface MarkdownBlockProps {
+  body: string;
   id: string;
+  src: string;
 }
 
-const ExpandableMarkdown: React.FC<ExpandableMarkdownProps> = ({ children, filename, id }) => {
+const MarkdownBlock: React.FC<MarkdownBlockProps> = ({ body, id, src }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(COLLAPSED_HEIGHT);
   const [expanded, setExpanded] = useState(false);
@@ -36,10 +38,7 @@ const ExpandableMarkdown: React.FC<ExpandableMarkdownProps> = ({ children, filen
   }, []);
 
   return (
-    <section className={styles.markdownBlock} id={id}>
-      <Label tone="info">
-        <div className={styles.markdownFilename}>{filename}</div>
-      </Label>
+    <BlockWrapper id={id} label={getBlockLabel(src)}>
       <motion.div
         className={styles.markdownViewport}
         id={`${id}-content`}
@@ -47,7 +46,9 @@ const ExpandableMarkdown: React.FC<ExpandableMarkdownProps> = ({ children, filen
         initial={false}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div ref={contentRef}>{children}</div>
+        <div ref={contentRef}>
+          <Markdown className={styles.markdownContent}>{body}</Markdown>
+        </div>
         {canExpand && !expanded && <span className={styles.markdownFade} aria-hidden="true" />}
       </motion.div>
       {canExpand && (
@@ -61,8 +62,8 @@ const ExpandableMarkdown: React.FC<ExpandableMarkdownProps> = ({ children, filen
           {expanded ? "Show less" : "Show more"}
         </Button.Link>
       )}
-    </section>
+    </BlockWrapper>
   );
 };
 
-export default ExpandableMarkdown;
+export default MarkdownBlock;

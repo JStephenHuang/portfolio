@@ -44,9 +44,9 @@ export const markdownBlockSchema = z.object({
 export const imageBlockSchema = z.object({
   type: z.literal("image"),
   src: z.string().min(1),
-  alt: z.string(),
-  width: z.number().int().positive(),
-  height: z.number().int().positive(),
+  alt: z.string().optional(),
+  width: z.number().int().positive().optional(),
+  height: z.number().int().positive().optional(),
   caption: z.string().optional(),
 });
 
@@ -64,9 +64,12 @@ export const dumpContentBlockSchema = z.discriminatedUnion("type", [
   videoBlockSchema,
 ]);
 
-export const dumpDateSchema = z.string().regex(/^\d{4}\/\d{2}\/\d{2}$/).refine(isCalendarDate, {
-  message: "Date must be a real calendar date in YYYY/MM/DD format.",
-});
+export const dumpDateSchema = z
+  .string()
+  .regex(/^\d{4}\/\d{2}\/\d{2}$/)
+  .refine(isCalendarDate, {
+    message: "Date must be a real calendar date in YYYY/MM/DD format.",
+  });
 
 export const dumpMetadataSchema = itemSchema.extend({
   body: z.record(dumpDateSchema, z.array(dumpContentBlockSchema).min(1)),

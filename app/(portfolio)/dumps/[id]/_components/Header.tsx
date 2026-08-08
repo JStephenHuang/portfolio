@@ -1,15 +1,15 @@
 import { GitHubLogoIcon, Link2Icon, VideoIcon } from "@radix-ui/react-icons";
 
 import { Image, Link } from "@/components/ui";
-import { Item } from "@/lib/data";
+import { type Item } from "@/lib/data";
 
 import styles from "./styles.module.scss";
 
-interface DumpHeaderProps {
+interface HeaderProps {
   item: Item;
 }
 
-const DumpHeader: React.FC<DumpHeaderProps> = ({ item }) => {
+const Header: React.FC<HeaderProps> = ({ item }) => {
   return (
     <header className={styles.header}>
       <div className={styles.imageWrapper}>
@@ -42,4 +42,4 @@ const DumpHeader: React.FC<DumpHeaderProps> = ({ item }) => {
   );
 };
 
-export default DumpHeader;
+export default Header;

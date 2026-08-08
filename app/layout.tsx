@@ -1,12 +1,20 @@
 import "@/styles/globals.scss";
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import { Providers } from "./providers";
 
+import classNames from "classnames";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+  preload: true,
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
   preload: true,
 });
@@ -18,7 +26,7 @@ export const metadata: Metadata = {
 
 const RootLayout: React.FC<Readonly<React.PropsWithChildren>> = ({ children }) => {
   return (
-    <html lang="en" className={spaceGrotesk.variable} suppressHydrationWarning>
+    <html lang="en" className={classNames(spaceGrotesk.variable, jetBrainsMono.variable)} suppressHydrationWarning>
       <body>
         <Providers>{children}</Providers>
       </body>

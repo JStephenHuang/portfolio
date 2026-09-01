@@ -1,3 +1,16 @@
+.cardLink {
+  display: block;
+  color: inherit;
+  cursor: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    border-radius: var(--border-radius-xxs);
+    outline: 2px solid var(--color-accent);
+    outline-offset: var(--spacing-room);
+  }
+}
+
 .card {
   width: 100%;
 }
@@ -11,27 +24,6 @@
   width: 100%;
 }
 
-.viewBtn {
-  --offset: var(--spacing-room);
-
-  position: absolute;
-  right: var(--offset);
-  top: var(--offset);
-
-  padding: var(--spacing-room) var(--spacing-house);
-
-  color: var(--color-white);
-
-  line-height: var(--line-height-tight);
-  pointer-events: auto;
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.6);
-
-  &:hover {
-    color: var(--color-accent);
-  }
-}
-
 .title {
   position: absolute;
   margin-top: var(--spacing-room);
@@ -41,13 +33,6 @@
 }
 
 @media (max-width: 768px) {
-  .viewBtn {
-    --offset: var(--spacing-dot);
-
-    right: var(--offset);
-    top: var(--offset);
-  }
-
   .title {
     margin-top: var(--spacing-dot);
   }

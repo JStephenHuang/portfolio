@@ -29,6 +29,7 @@ Image blocks require a source URL, alternative text, and the image's intrinsic d
         "alt": "Advent calendar showing the completed challenges",
         "width": 1600,
         "height": 900,
+        "fullWidth": true,
         "caption": "Progress after day 13"
       }
     ]
@@ -43,6 +44,7 @@ For a local image, place the file in `public/<dump-id>/` and use its public path
 - `alt`: A useful text alternative. Use an empty string only when the image is decorative.
 - `width`: Original image width in pixels.
 - `height`: Original image height in pixels.
+- `fullWidth`: Optional. Set to `true` to fill the content block width.
 - `caption`: Optional text displayed below the image.
 
 ## Videos

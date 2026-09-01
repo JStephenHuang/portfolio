@@ -4,16 +4,21 @@ import type React from "react";
 import { useState } from "react";
 
 import * as AirHockey from "@/components/primitives/AirHockey";
-import { rootItems } from "@/lib/data";
+import type { Item } from "@/lib/data";
 import { useArrangedItems } from "@/lib/hooks";
 
 import { useSettings } from "../contexts/SettingsContext";
 import PortfolioCard from "../PortfolioCard";
 import styles from "./styles.module.scss";
 
-const PortfolioGallery: React.FC = () => {
+interface PortfolioGalleryProps {
+  items: Item[];
+  storageKey: string;
+}
+
+const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({ items, storageKey }) => {
   const { bounce, friction, layout } = useSettings();
-  const { arrangedItems, isLoading, savePosition, bringForward } = useArrangedItems(rootItems, "root-items");
+  const { arrangedItems, isLoading, savePosition, bringForward } = useArrangedItems(items, storageKey);
   const [activeItemId, setActiveItemId] = useState<string | null>(null);
   const isLocked = layout === "lock";
 
@@ -27,6 +32,7 @@ const PortfolioGallery: React.FC = () => {
           if (event.target === event.currentTarget) setActiveItemId(null);
         }}
       >
+        {!isLoading && arrangedItems.length === 0 && <p className={styles.empty}>Nothing here yet.</p>}
         {!isLoading &&
           arrangedItems.map((item) => (
             <AirHockey.Item

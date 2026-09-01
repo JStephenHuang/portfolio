@@ -35,6 +35,9 @@
         "type": "image",
         "src": "/aoc/calendar2025.png",
         "alt": "My final Advent of Code calendar for 2025",
+        "width": 918,
+        "height": 715,
+        "fullWidth": true,
         "caption": "My final advent calendar for 2025"
       }
     ]

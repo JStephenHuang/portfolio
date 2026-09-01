@@ -2,6 +2,7 @@
 
 import { EnvelopeClosedIcon, GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "motion/react";
+import { usePathname } from "next/navigation";
 import { Button, Link } from "@/components/ui";
 
 import { useMounted } from "@mantine/hooks";
@@ -11,6 +12,13 @@ import { useSettings } from "../contexts/SettingsContext";
 
 import classNames from "classnames";
 import styles from "./styles.module.scss";
+
+const navigationItems = [
+  { label: "jsh", href: "/" },
+  { label: "work", href: "/work" },
+  { label: "projects", href: "/projects" },
+  { label: "journal", href: "/journal" },
+] as const;
 
 const getNextPhysicsValue = (value: number, direction: 1 | -1 = 1) => {
   return ((Math.round(value * 10) + direction + 11) % 11) / 10;
@@ -82,6 +90,7 @@ const LayoutToggle: React.FC = () => {
 };
 
 const Nav: React.FC = () => {
+  const pathname = usePathname();
   const { isLoading, isSettingsOpen, friction, bounce, layout, setIsSettingsOpen, setBounce, setFriction } =
     useSettings();
   const isLocked = layout === "lock";
@@ -89,9 +98,22 @@ const Nav: React.FC = () => {
   return (
     <div>
       <nav className={styles.topNav}>
-        <Link className={styles.link} href={"/"}>
-          jsh
-        </Link>
+        <div className={styles.navigationLinks}>
+          {navigationItems.map(({ href, label }) => {
+            const active = pathname === href;
+
+            return (
+              <Link
+                className={classNames(styles.link, active && styles.activeLink)}
+                href={href}
+                aria-current={active ? "page" : undefined}
+                key={href}
+              >
+                {label}
+              </Link>
+            );
+          })}
+        </div>
         <div className={classNames(styles.settings)}>
           <Button.Toggle active={isSettingsOpen} onClick={() => setIsSettingsOpen(!isSettingsOpen)}>
             settings

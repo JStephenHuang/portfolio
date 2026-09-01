@@ -47,6 +47,7 @@ export const imageBlockSchema = z.object({
   alt: z.string().optional(),
   width: z.number().int().positive().optional(),
   height: z.number().int().positive().optional(),
+  fullWidth: z.boolean().optional(),
   caption: z.string().optional(),
 });
 

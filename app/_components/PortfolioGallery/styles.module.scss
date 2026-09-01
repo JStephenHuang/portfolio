@@ -10,22 +10,26 @@
 }
 
 .board {
-  height: 125svh;
+  height: 100vh;
+}
+
+.empty {
+  position: absolute;
+  top: 50svh;
+  left: 50%;
+  margin: 0;
+  color: var(--color-text-secondary);
+  transform: translate(-50%, -50%);
 }
 
 .item {
   width: min(var(--item-width), calc(100vw - var(--spacing-city) - var(--spacing-city)));
-  cursor: grab;
+  cursor: pointer;
   touch-action: none;
   user-select: none;
-
-  &:active {
-    cursor: grabbing;
-  }
 }
 
 .fixed .item {
-  cursor: default;
   touch-action: auto;
 }
 

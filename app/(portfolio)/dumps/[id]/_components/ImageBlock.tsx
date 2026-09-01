@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 import { Image } from "@/components/ui";
 import { type DumpContentBlock } from "@/lib/data";
 
@@ -17,7 +19,7 @@ const ImageBlock: React.FC<ImageBlockProps> = ({ block, id }) => {
     <BlockWrapper id={id} label={getBlockLabel(block.src)}>
       <figure className={styles.media}>
         <Image
-          className={styles.mediaImage}
+          className={classNames(styles.mediaImage, block.fullWidth && styles.mediaImageFullWidth)}
           src={block.src}
           alt={block.alt || "empty image"}
           width={block.width}

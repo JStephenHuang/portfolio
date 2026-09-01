@@ -1,9 +1,28 @@
 "use client";
 
-import { Provider, ProviderProps, useAirHockeyContext } from "./Context";
-import { motion, type PanInfo, useAnimationFrame, useMotionValue } from "motion/react";
+import { motion, type PanInfo, useAnimationFrame, useDragControls, useMotionValue } from "motion/react";
 import React, { useCallback, useEffect, useRef } from "react";
-import { Bounds, getBounds, resolveCollision, Vector } from "./physics";
+
+import { Provider, type ProviderProps, useAirHockeyContext } from "./Context";
+import { type Bounds, getBounds, resolveCollision, type Vector } from "./physics";
+
+type PointerType = "mouse" | "pen" | "touch";
+
+export type DragActivationThreshold = number | Partial<Record<PointerType, number>>;
+
+const defaultDragActivationThreshold: Record<PointerType, number> = {
+  mouse: 6,
+  pen: 6,
+  touch: 10,
+};
+
+const getDragActivationThreshold = (threshold: DragActivationThreshold, pointerType: string): number => {
+  if (typeof threshold === "number") return Math.max(0, threshold);
+
+  const resolvedPointerType = pointerType === "pen" || pointerType === "touch" ? pointerType : "mouse";
+
+  return Math.max(0, threshold[resolvedPointerType] ?? defaultDragActivationThreshold[resolvedPointerType]);
+};
 
 interface RootProps extends React.ComponentProps<"div">, Omit<ProviderProps, "rinkRef"> {}
 
@@ -24,6 +43,7 @@ const Root: React.FC<RootProps> = ({ children, physics, off, style, ...props }) 
 };
 
 interface ItemProps extends React.ComponentProps<typeof motion.div> {
+  dragActivationThreshold?: DragActivationThreshold;
   initialX?: number;
   initialY?: number;
   onSettle?: (position: Vector) => void;
@@ -31,18 +51,24 @@ interface ItemProps extends React.ComponentProps<typeof motion.div> {
 
 const Item: React.FC<ItemProps> = ({
   children,
+  dragActivationThreshold = defaultDragActivationThreshold,
   initialX = 0,
   initialY = 0,
   style,
+  onClickCapture,
   onDragStart,
   onDragEnd,
+  onPointerCancelCapture,
+  onPointerDownCapture,
   onSettle,
   ...props
 }) => {
   const { physics, off, rinkRef } = useAirHockeyContext();
+  const dragControls = useDragControls();
   const itemRef = useRef<HTMLDivElement>(null);
   const boundsRef = useRef<Bounds | null>(null);
   const velocityRef = useRef<Vector>({ x: 0, y: 0 });
+  const gestureRef = useRef({ didDrag: false, pointerId: null as number | null });
   const isDraggingRef = useRef(false);
   const isMovingRef = useRef(false);
   const hasInitializedRef = useRef(false);
@@ -107,7 +133,7 @@ const Item: React.FC<ItemProps> = ({
 
   useEffect(() => {
     if (off) settle();
-  }, [off]);
+  }, [off, settle]);
 
   useAnimationFrame((_, delta) => {
     const bounds = boundsRef.current;
@@ -154,14 +180,14 @@ const Item: React.FC<ItemProps> = ({
   });
 
   const handleDragStart = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    onDragStart?.(event, info);
+    gestureRef.current.didDrag = true;
     isDraggingRef.current = true;
     isMovingRef.current = false;
     velocityRef.current = { x: 0, y: 0 };
+    onDragStart?.(event, info);
   };
 
   const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    onDragEnd?.(event, info);
     isDraggingRef.current = false;
     velocityRef.current = {
       x: info.velocity.x,
@@ -170,6 +196,52 @@ const Item: React.FC<ItemProps> = ({
     isMovingRef.current = Math.hypot(velocityRef.current.x, velocityRef.current.y) >= 8;
 
     if (!isMovingRef.current) settle();
+    onDragEnd?.(event, info);
+  };
+
+  const handlePointerDownCapture = (event: React.PointerEvent<HTMLDivElement>): void => {
+    onPointerDownCapture?.(event);
+
+    if (!event.isPrimary || event.button !== 0) return;
+
+    gestureRef.current = {
+      didDrag: false,
+      pointerId: event.pointerId,
+    };
+
+    if (event.defaultPrevented || off) return;
+
+    const target = event.target;
+
+    if (target instanceof Element && target.closest("[data-air-hockey-no-drag]")) return;
+
+    dragControls.start(event, {
+      distanceThreshold: getDragActivationThreshold(dragActivationThreshold, event.pointerType),
+    });
+  };
+
+  const handlePointerCancelCapture = (event: React.PointerEvent<HTMLDivElement>): void => {
+    onPointerCancelCapture?.(event);
+
+    if (gestureRef.current.pointerId === event.pointerId) {
+      gestureRef.current = { didDrag: false, pointerId: null };
+    }
+  };
+
+  const handleClickCapture = (event: React.MouseEvent<HTMLDivElement>): void => {
+    const clickPointerId = (event.nativeEvent as MouseEvent & { pointerId?: number }).pointerId;
+    const isMatchingPointer = clickPointerId === undefined || clickPointerId === gestureRef.current.pointerId;
+    const shouldSuppressClick = event.detail > 0 && gestureRef.current.didDrag && isMatchingPointer;
+
+    gestureRef.current = { didDrag: false, pointerId: null };
+
+    if (shouldSuppressClick) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    onClickCapture?.(event);
   };
 
   return (
@@ -177,11 +249,16 @@ const Item: React.FC<ItemProps> = ({
       {...props}
       ref={itemRef}
       drag={!off}
+      dragControls={dragControls}
       dragConstraints={rinkRef}
       dragElastic={0}
+      dragListener={false}
       dragMomentum={false}
+      onClickCapture={handleClickCapture}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
+      onPointerCancelCapture={handlePointerCancelCapture}
+      onPointerDownCapture={handlePointerDownCapture}
       style={{ position: "absolute", ...style, x, y }}
     >
       {children}

@@ -34,6 +34,17 @@
   pointer-events: auto;
 }
 
+.navigationLinks {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-street);
+  pointer-events: auto;
+}
+
+.activeLink {
+  font-weight: var(--font-weight-bold);
+}
+
 .icon {
   width: 16px;
   height: 16px;

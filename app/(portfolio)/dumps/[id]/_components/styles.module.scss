@@ -122,6 +122,10 @@
   object-fit: contain;
 }
 
+.mediaImageFullWidth {
+  width: 100%;
+}
+
 .mediaVideo {
   width: 100%;
   background: var(--color-black);
